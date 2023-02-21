@@ -24,6 +24,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+/*
+	找到html标签、body标签，和挂载的标签
+	都给他们统一设置样式
+*/
+html,body,#app{
+  /*统一设置高度为100%*/
+  height: 100%;
+}
 
 </style>

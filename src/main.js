@@ -9,11 +9,14 @@ import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 import Vuex from 'vuex'
 import store from './store'
+import echarts from 'echarts';
+
 
 Vue.use(ElementUI);//声明使用element
 Vue.use(VueRouter);//声明使用vue-router
 Vue.use(Vuex);//神功使用vuex
 Vue.prototype.axios = axios;//声明使用axios
+Vue.prototype.$echarts = echarts//引入echarts
 
 
 Vue.config.productionTip = false

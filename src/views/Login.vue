@@ -43,7 +43,7 @@ import { valid } from 'semver'
           if(valid){
             sessionStorage.setItem('isLogin',true);//设置登录状态
             this.$store.dispatch("asyncUpdateAdmin",{name:this.form.name});//传递store
-            this.$router.push({name:'Main',params:{name:this.form.name}});//传参{name:推到页面名,prarms:{传递参数名:参数}}
+            this.$router.push({name:'Layout',params:{name:this.form.name}});//传参{name:推到页面名,prarms:{传递参数名:参数}}
             //this.$router.push('/main');
           }
           else{
