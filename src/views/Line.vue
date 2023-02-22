@@ -11,7 +11,6 @@ import echarts from "echarts";
 
 export default {
   name:'Line',
-
   data() {
     return {
       charts: '',

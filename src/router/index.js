@@ -8,10 +8,12 @@ import List from '../views/List'
 import Table from '../views/Table'
 import NotFound from '../views/NotFound'
 import Line from '../views/Line'
-import Pie from '../views/Pie'
+import Pie from '../views/Main/Pie.vue'
 import BarLine from "../views/bar+line";
 import Form from "../views/Form";
 import Main from "../views/Main.vue"
+import Radar from "../views/Main/Radar.vue";
+
 //import { component } from 'vue/types/umd';
 
 Vue.use(Router);
@@ -32,7 +34,7 @@ export default new Router({
     redirect:'/main/:name',//首页直接链接到内容显示
     component:Layout,
     children:[//Main中子路由用来跳转table list 等
-      {//list
+      {//main
         path:'/main/:name',
         name:'Main',
         component:Main,
@@ -52,19 +54,24 @@ export default new Router({
         path:'/goMain/:name',
         redirect:'/main/:name'
       },
-      {
+      {//折线图
         path:'/line',
         name:'Line',
         component:Line//注意是component，不加s
       },
-      {
+      {//饼状图
         path:'/pie',
         name:'Pie',
         component:Pie
       },
-      {
+      {//折+柱
         path:'/barline',
         name:'BarLine', component:BarLine
+      },
+      {//雷达图
+        path:'/radar',
+        name:'Radar',
+        component:Radar
       },
       {
         path:'/form1',

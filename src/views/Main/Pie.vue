@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="main" style="width:900px ;height:300px;"></div>
+    <div id="mymain" style="width:100% ;height:100%"></div>
   </div>
 </template>
 
@@ -19,13 +19,13 @@ export default {
   methods: {
     getPie() {
       // 绘制图表
-      var myChart = echarts.init(document.getElementById('main'))
+      var myChart = echarts.init(document.getElementById('mymain'))
       // 指定图表的配置项和数据
       var option = {
         //标题
         title: {
           text: '这是个标题',
-          x: 'left' ,              //标题位置
+          x: 'center' ,              //标题位置
           // textStyle: { //标题内容的样式
           //   color: '#000',
           //   fontStyle: 'normal',

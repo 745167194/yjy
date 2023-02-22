@@ -45,6 +45,9 @@
             <el-menu-item index="/barline">
               <span slot="title">柱+折</span>
             </el-menu-item>
+            <el-menu-item index="/radar">
+              <span slot="title">雷达图</span>
+            </el-menu-item>
           </el-submenu>
           <el-menu-item index="/goMain/admin123">
             <span slot="title">回到主页</span>
