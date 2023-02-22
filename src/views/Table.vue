@@ -1,5 +1,7 @@
 <template>
-  <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
+  <div style="width: 100%;height: 100%">
+    <el-tag v-for="tag in tags" :key="tag.name" closable :type="tag.type" class="mytags">{{tag.name}}</el-tag>
+  <el-table :data="tableData" style="width: 100%" >
     <el-table-column prop="date" label="日期" width="180"></el-table-column>
     <el-table-column prop="name" label="姓名" width="180"></el-table-column>
     <el-table-column prop="address" label="地址"></el-table-column>
@@ -10,6 +12,7 @@
       </template>
     </el-table-column>
   </el-table>
+  </div>
 </template>
 
 <script>
@@ -59,7 +62,14 @@
           city: '普陀区',
           address: '上海市普陀区金沙江路 1516 弄',
           zip: 200333
-        }]
+        }],
+        tags: [
+          { name: '标签一', type: '' },
+          { name: '标签二', type: 'success' },
+          { name: '标签三', type: 'info' },
+          { name: '标签四', type: 'warning' },
+          { name: '标签五', type: 'danger' }
+        ]
       }
     }
     /*methods:{
@@ -77,5 +87,8 @@
   }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.mytags{
+  margin: 5px;
+}
 </style>

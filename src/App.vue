@@ -15,6 +15,8 @@ export default {
   methods:{
     saveState(){
       //保存state,使得刷新后还能得到原来的state数据
+      console.log("state:"+
+        JSON.stringify(this.$store.state.admin));
       sessionStorage.setItem('state',JSON.stringify(this.$store.state.admin));
       console.log("state:"+
                   sessionStorage.getItem('state'));

@@ -15,7 +15,7 @@
         </div>
         <div class="bullshit__headline">{{ message }}</div>
         <div class="bullshit__info">Please check that the URL you entered is correct, or click the button below to return to the homepage.</div>
-        <a href='/goMain/111' class="bullshit__return-home">Back to home</a>
+        <el-button type="primary" @click="backtohome($store.getters.getAdmin.name)">返回主页</el-button>
       </div>
     </div>
   </div>
@@ -24,6 +24,13 @@
 <script>
   export default{
     name:'NotFound',
+    methods:{
+      backtohome(adname){
+        console.log("notfound state:"+
+          JSON.stringify(this.$store.state.admin));
+        this.$router.push({name:'Layout',params:{name:adname}});
+      }
+    },
     computed: {
       message() {
         return 'The webmaster said that you can not enter this page...'

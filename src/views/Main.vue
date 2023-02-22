@@ -1,48 +1,29 @@
 <template>
   <div>
-    <div style="display: flex; margin: 10px;height:150px" >
-      <div class="smallcon">
-        div1
-      </div>
-      <div class="smallcon">
-       div2
-      </div>
-      <div class="smallcon">
-        div3
-      </div>
-      <div class="smallcon">
-        div4
-      </div>
-    </div>
-
-
     <div class="myline">
-      <MyLine style="width: 100%;height: 100%"></MyLine>
+      <My_Line style="width: 100%;height: 100%"></My_Line>
     </div>
-
     <div style="display: flex;">
       <div class="collapse">
-        <radar style="width: 100%;height: 100%"></radar>
+        <My_radar style="width: 100%;height: 100%"></My_radar>
       </div>
       <div class="collapse">
-        <Pie style="width: 100%;height: 100%"></Pie>
+        <My_Pie style="width: 100%;height: 100%"></My_Pie>
       </div>
       <div class="collapse">
-        <Collapse ></Collapse>
+        <My_Collapse ></My_Collapse>
       </div>
-
     </div>
-
   </div>
 </template>
 
 
 
 <script>
-import MyLine from "./Line.vue"
-import Collapse from "./Main/Collapse.vue"
-import radar from "./Main/Radar.vue";
-import Pie from "./Main/Pie.vue"
+import My_Line from "./Main/Mainline.vue"
+import My_Collapse from "./Main/Collapse.vue"
+import My_radar from "./Main/Radar.vue";
+import My_Pie from "./Main/Pie.vue"
 export default {
   name: "Main",
   date(){
@@ -51,27 +32,15 @@ export default {
     }
   },
   components: {
-    MyLine,
-    Collapse,
-    radar,
-    Pie
-  }
+    My_Line,
+    My_Collapse,
+    My_radar,
+    My_Pie
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-
-.smallcon{
-  width: 450px ;
-  height: 100px;
-  margin: 20px ;
-  border:1px solid #DCDFE6;
-  box-shadow:0 0 30px #DCDFE6;
-  border-radius:5px;
-}
-.smallcon:hover{
-  transform: scale(1.05);//四周变大
-}
 .collapse{
   width: 500px;
   height: 450px;
@@ -83,10 +52,8 @@ export default {
   border-radius:5px;
 }
 .myline{
-  border:1px solid #DCDFE6;
-  box-shadow:0 0 30px #DCDFE6;
-  border-radius:5px;
-  height: 350px;
-  margin-left: 25px;
+  height: 500px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>

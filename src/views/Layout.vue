@@ -4,19 +4,24 @@
       <el-aside style="width: 250px">
         <el-scrollbar >
         <!--边栏导航-->
-        <el-menu :default-openeds="['1']"  router @open="handleOpen"
-                 @close="handleClose">  <!--router属性：会将index作为path进行跳转-->
+        <el-menu :default-openeds="['1']" router :default-active="$route.path">  <!--router属性：会将index作为path进行跳转-->
           <!--默认导航index=1的打开-->
           <el-submenu index="1">
             <template slot="title"><i class="el-icon-menu"></i>导航一</template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
+            <el-menu-item index="1-1">
+              <el-button @click="saveState">控制台信息</el-button>
+            </el-menu-item>
+            <el-menu-item index="/upload">
+              <span slot="title">上传文件</span>
+            </el-menu-item>
             <el-menu-item index="/form1">
               <span slot="title">表单1</span>
             </el-menu-item>
             <el-submenu index="1-4">
               <template slot="title">选项4</template>
-              <el-menu-item index="1-4-1">选项4-1</el-menu-item>
+                <el-menu-item index="/tabs">
+                  <span slot="title">标签页+表格</span>
+                </el-menu-item>
             </el-submenu>
           </el-submenu>
 
@@ -49,7 +54,7 @@
               <span slot="title">雷达图</span>
             </el-menu-item>
           </el-submenu>
-          <el-menu-item index="/goMain/admin123">
+          <el-menu-item  :index="'/goMain/'+$store.getters.getAdmin.name">
             <span slot="title">回到主页</span>
           </el-menu-item>
         </el-menu>
@@ -63,7 +68,7 @@
             <i class="el-icon-setting" style="margin-right: 15px"></i>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>管理员中心</el-dropdown-item>
-              <el-dropdown-item>退出登录</el-dropdown-item>
+              <el-dropdown-item @click.native="outlog">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
           <span>{{$store.getters.getAdmin.name}}</span>
@@ -82,11 +87,18 @@
   export default {
     name: 'Layout',
     methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
+      saveState(){
+        //保存state,使得刷新后还能得到原来的state数据
+        console.log("layout state:"+
+          JSON.stringify(this.$store.state.admin));
+        //sessionStorage.setItem('state',JSON.stringify(this.$store.state.admin));
+        //console.log("state:"+sessionStorage.getItem('state'));
+        //sessionStorage只能传递字符串,所以将state转化为JSON类型的字符串来存储state
       },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
+      outlog(){
+        console.log("退出登录");
+        sessionStorage.setItem('isLogin',false);//设置登录状态
+        this.$router.push({name:'Login'});
       }
     }
   }

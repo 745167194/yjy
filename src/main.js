@@ -33,7 +33,8 @@ router.beforeEach((to,from,next)=>{
   //已经登录的用户去登陆页面，直接跳转主页
   else if(to.path == '/login'){
     if(isLogin != null){
-      next({path:'/main/admin123'});
+      next({path:'/main/'+store.getters.getAdmin.name});
+      console.log("2,,,,,"+isLogin);
     }
     console.log("2");
   }

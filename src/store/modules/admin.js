@@ -5,21 +5,21 @@ const admin={
     admin: {
       name: ''//APP中可save
     }
-  };
+  },
 
   //监听stste对象的最新状态（计算属性）
   getters : {
     getAdmin(state) {
       return state.admin;
     }
-  };
+  },
 
   //唯一一个可以修改state值的函数(同步执行，阻塞的)
   mutations : {
     updateAdmin(state, admin) {
       state.admin = admin;
     }
-  };
+  },
 
   //异步执行mutation的方法
   actions : {

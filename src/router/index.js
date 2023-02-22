@@ -13,6 +13,8 @@ import BarLine from "../views/bar+line";
 import Form from "../views/Form";
 import Main from "../views/Main.vue"
 import Radar from "../views/Main/Radar.vue";
+import Upload from "../views/Upload.vue"
+import Tabs from "../views/Tabs.vue"
 
 //import { component } from 'vue/types/umd';
 
@@ -44,7 +46,7 @@ export default new Router({
         name:'List',
         component:List,
       },
-      {
+      {//表格
         path:'/table',
         name:'Table',
         component:Table,
@@ -73,11 +75,21 @@ export default new Router({
         name:'Radar',
         component:Radar
       },
-      {
+      {//表单
         path:'/form1',
         name:'Form',
         component:Form//注意是component，不加s
       },
+      {//上传文件
+        path:'/upload',
+        name:'Upload',
+        component:Upload//注意是component，不加s
+      },
+      {//标签
+        path:'/tabs',
+        name:'Tabs',
+        component:Tabs//注意是component，不加s
+      }
     ],
   },
   {
