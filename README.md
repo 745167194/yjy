@@ -1,21 +1,15 @@
-# vue-element
+### 今日总结
+1. 完善前端框架，添加必要组件
+2. 进行首页排版，内容增色
+3. 完善页面跳转逻辑
 
-> A Vue.js project
+### 存在问题
+1. 首页设计出现偏差(已解决)
+2. 页面间数据传送出现问题 (正在解决)
 
-## Build Setup
+### 明日计划
+1. 继续完善前端代码
+2. 测试页面，组件之间的数据传送
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### 需要支持
+1. 暂无
