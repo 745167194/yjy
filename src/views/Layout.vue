@@ -1,10 +1,8 @@
 <template>
   <div style="height: 100%">
     <el-container>
-      <el-aside style="width: 250px">
-        <el-scrollbar >
         <!--边栏导航-->
-        <el-menu :default-openeds="['1']" router :default-active="$route.path">  <!--router属性：会将index作为path进行跳转-->
+        <el-menu :default-openeds='defaultOpenedsArray' router :default-active="this.$route.path" :isCollapse="isCollapse" class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
           <!--默认导航index=1的打开-->
           <el-submenu index="1">
             <template slot="title"><i class="el-icon-menu"></i>导航一</template>
@@ -24,9 +22,8 @@
                 </el-menu-item>
             </el-submenu>
           </el-submenu>
-
           <el-submenu index="2">
-            <template slot="title"><i class="el-icon-message"></i>导航二</template>
+            <template slot="title"><i class="el-icon-menu"></i>导航二</template>
             <el-menu-item index="/table">
               <span slot="title">table</span>
             </el-menu-item>
@@ -36,11 +33,11 @@
               <router-link :to="{name:'List',params:{id:2}}">list</router-link>-->
               <!--使用路由传参，{index中配置的路由name,传递的参数}-->
             </el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-menu-item index="/axiostest">Axiostest</el-menu-item>
           </el-submenu>
 
           <el-submenu index="3">
-            <template slot="title"><i class="el-icon-message"></i>导航三</template>
+            <template slot="title"><i class="el-icon-menu"></i>导航三</template>
             <el-menu-item index="/line">
               <span slot="title">line</span>
             </el-menu-item>
@@ -55,16 +52,17 @@
             </el-menu-item>
           </el-submenu>
           <el-menu-item  :index="'/goMain/'+$store.getters.getAdmin.name">
-            <span slot="title">回到主页</span>
+            <span slot="title"><i class="el-icon-s-home"></i>回到主页</span>
           </el-menu-item>
         </el-menu>
-        </el-scrollbar>
-      </el-aside>
+
 
       <!--主页面-->
       <el-container>
-        <el-header style="text-align: right; font-size: 12px">
-          <el-dropdown>
+        <el-header style="font-size: 12px;">
+          <div style="float: left" @click="toggleCollapse"><i class="el-icon-s-fold"></i></div>
+          <div style="float:right ">
+          <el-dropdown >
             <i class="el-icon-setting" style="margin-right: 15px"></i>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>管理员中心</el-dropdown-item>
@@ -72,6 +70,7 @@
             </el-dropdown-menu>
           </el-dropdown>
           <span>{{$store.getters.getAdmin.name}}</span>
+          </div>
         </el-header>
 
         <el-main>
@@ -86,6 +85,12 @@
 <script>
   export default {
     name: 'Layout',
+    data(){
+      return {
+        isCollapse: true,//true：菜单栏收缩；false：菜单栏展开
+        defaultOpenedsArray:[]//默认打开打开的菜单
+      }
+    },
     methods: {
       saveState(){
         //保存state,使得刷新后还能得到原来的state数据
@@ -99,13 +104,22 @@
         console.log("退出登录");
         sessionStorage.setItem('isLogin',false);//设置登录状态
         this.$router.push({name:'Login'});
+      },
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      toggleCollapse () {//菜单折叠与展开
+        this.isCollapse = !this.isCollapse;
+        console.log("collapse?"+this.isCollapse)
       }
     }
   }
 </script>
 
 <style lang="scss" >
-
   .el-header {
     background-color: #B3C0D1;
     color: #333;
@@ -114,14 +128,9 @@
   .el-container {
     height:100%;
   }
-  .el-aside {
-    background: #787979;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-  .el-aside::-webkit-scrollbar {
-    display: none;
+  .el-menu-vertical:not(.el-menu--collapse) {
+    width: 240px;
+    height: 100%;
   }
 
 </style>

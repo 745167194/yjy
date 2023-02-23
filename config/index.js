@@ -6,11 +6,17 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {//webpack-dev-server提供，配置开发环境下的axios路径
+/*      './api':{//当请求api目录文件的时候
+        target:'http://localhost:8080',
+        pathRewrite:{//路径重写，以/api开头的，改为/static/mock
+          '^/api':'/static/mock'
+        }
+      }*/
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -20,7 +26,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */

@@ -8,13 +8,16 @@
 
 <script>
 import echarts from "echarts";
+import axios from "axios";
 
 export default {
   name:'Line',
   data() {
     return {
       charts: '',
-      opinionData: ["155", "400", "900", "800", "300", "900", "270"]//数据
+      opinionData1: ["155", "400", "900", "800", "300", "900", "270"],//数据
+      opinionData2:'',
+      //opinionData1:''
     }
   },
   methods: {
@@ -108,7 +111,7 @@ export default {
             }
 
           },
-          data: this.opinionData
+          data: this.opinionData1
         },
 
 
@@ -141,7 +144,7 @@ export default {
               }
 
             },
-            data:["150", "412", "873", "806", "354", "820", "295"]
+            data:this.opinionData2
           }
 
         ]
@@ -150,9 +153,18 @@ export default {
   },
   //调用
   mounted() {
-    this.$nextTick(function() {
-      this.drawLine('main')//main是容器id
+    axios.get('/mock/test').then( response => {//在此函数内部得到的信息才生效
+      this.opinionData2 = response.data.opinionData2
+      //this.opinionData1 = response.data.opinionData1
+      console.log("data2:"+this.opinionData2)
+      //console.log("data1:"+this.opinionData1)
+
+      //在获取opinionData2的情况下画图
+      this.$nextTick(function() {
+        this.drawLine('main')//main是容器id
+      })
     })
+    //console.log("data2:"+this.opinionData2)
   }
 }
 </script>

@@ -15,6 +15,7 @@ import Main from "../views/Main.vue"
 import Radar from "../views/Main/Radar.vue";
 import Upload from "../views/Upload.vue"
 import Tabs from "../views/Tabs.vue"
+import AxiosTest from "../views/AxiosTest.vue";
 
 //import { component } from 'vue/types/umd';
 
@@ -89,7 +90,12 @@ export default new Router({
         path:'/tabs',
         name:'Tabs',
         component:Tabs//注意是component，不加s
-      }
+      },
+      {//测试Axios
+        path:'/axiostest',
+        name:'AxiosTest',
+        component:AxiosTest//注意是component，不加s
+      },
     ],
   },
   {

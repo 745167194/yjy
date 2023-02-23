@@ -39,17 +39,21 @@ import { valid } from 'semver'
     },
     methods:{
       submitForm(formName){
-        this.$refs[formName].validate((valid)=>{
-          if(valid){
-            sessionStorage.setItem('isLogin',true);//设置登录状态
-            this.$store.dispatch("asyncUpdateAdmin",{name:this.form.name});//传递store
-            this.$router.push({name:'Layout',params:{name:this.form.name}});//传参{name:推到页面名,prarms:{传递参数名:参数}}
-            //this.$router.push('/main');
-          }
-          else{
+        this.$refs[formName].validate(async (valid) => {
+          if (valid) {
+            //const res = await data(this.form)//取data返回结果中的form属性
+            //if (res.data.code !== 200) {
+              ///return this.$message.error(res.data.message)
+              sessionStorage.setItem('isLogin', true);//设置登录状态
+              await this.$store.dispatch("asyncUpdateAdmin", {name: this.form.name});//传递store
+              await this.$router.push({name: 'Layout', params: {name: this.form.name}});//传参{name:推到页面名,prarms:{传递参数名:参数}}
+              //this.$router.push('/main');
+            //}
+          } else {
             this.$message({
-            message: '用户名或密码错误',
-            type: 'warning'});
+              message: '用户名或密码错误',
+              type: 'warning'
+            });
           }
         })
       }

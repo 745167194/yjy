@@ -10,6 +10,8 @@ import axios from 'axios'
 import Vuex from 'vuex'
 import store from './store'
 import echarts from 'echarts';
+import '../mock'
+import AxiosTest from "./views/AxiosTest.vue";
 
 
 Vue.use(ElementUI);//声明使用element
