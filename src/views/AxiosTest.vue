@@ -24,7 +24,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('../static/result.json').then(response=>this.info=response.data);
+    axios.get('http://localhost:3008/data').then(response=>this.info=response.data);
   }
 }
 </script>

@@ -9,15 +9,16 @@
 <script>
 import echarts from "echarts";
 import axios from "axios";
+import request from "../utils/request";
+import {log} from "util";
 
 export default {
   name:'Line',
   data() {
     return {
       charts: '',
-      opinionData1: ["155", "400", "900", "800", "300", "900", "270"],//数据
-      opinionData2:'',
-      //opinionData1:''
+      opinionData1:[],//数据
+      opinionData2:[],
     }
   },
   methods: {
@@ -146,26 +147,31 @@ export default {
             },
             data:this.opinionData2
           }
-
         ]
       })
     }
   },
   //调用
-  mounted() {
-    axios.get('/mock/test').then( response => {//在此函数内部得到的信息才生效
-      this.opinionData2 = response.data.opinionData2
-      //this.opinionData1 = response.data.opinionData1
-      console.log("data2:"+this.opinionData2)
-      //console.log("data1:"+this.opinionData1)
+  created() {
+    request({
+      method:'GET',
+      url:'/LineData'
+    }).then(res=>{
+      console.log(res);
+      this.opinionData1=res.data.opinionData1 //从json中获得数据1
+      this.opinionData2=res.data.opinionData2 //从json中获得数据2
 
-      //在获取opinionData2的情况下画图
-      this.$nextTick(function() {
+      console.log(this.opinionData1+'+'+this.opinionData2)
+
+      this.$nextTick(function() {//绘图
+        console.log("draw")
         this.drawLine('main')//main是容器id
       })
     })
-    //console.log("data2:"+this.opinionData2)
   }
+
+  /*同步请求，客户端向服务端发送请求，服务端响应以后客户端才渲染页面
+    异步请求，客户端向服务端发送请求，客户端不等服务端响应就行行页面渲染，一般做页面的局部刷新。(画不出来图）*/
 }
 </script>
 
