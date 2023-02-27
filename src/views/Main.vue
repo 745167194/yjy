@@ -53,6 +53,7 @@ export default {
 }
 .myline{
   height: 500px;
+
   margin-left: 10px;
   margin-right: 10px;
 }

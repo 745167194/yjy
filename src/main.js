@@ -11,12 +11,12 @@ import Vuex from 'vuex'
 import store from './store'
 import echarts from 'echarts';
 import '../mock'
-import AxiosTest from "./views/AxiosTest.vue";
-
+import VueClipboard from "vue-clipboard2";
 
 Vue.use(ElementUI);//声明使用element
 Vue.use(VueRouter);//声明使用vue-router
 Vue.use(Vuex);//神功使用vuex
+Vue.use(VueClipboard);//使用VueClipboard，实现IP输入框
 Vue.prototype.axios = axios;//声明使用axios
 Vue.prototype.$echarts = echarts//引入echarts
 

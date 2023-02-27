@@ -16,6 +16,11 @@ import Radar from "../views/Main/Radar.vue";
 import Upload from "../views/Upload.vue"
 import Tabs from "../views/Tabs.vue"
 import AxiosTest from "../views/AxiosTest.vue";
+import indexVue from "../views/Index.vue"
+import Network from "../views/Network/Network.vue";
+import TCPIP from "../views/Network/TCPIP.vue"
+import Port from "../views/Network/Port.vue"
+import basicService from "../views/Network/basicService.vue";
 
 //import { component } from 'vue/types/umd';
 
@@ -30,6 +35,12 @@ export default new Router({
     name:'Login',
     component:Login
   },
+    {
+      //索引页
+      path:'/index',
+      name:'Index',
+      component:indexVue
+    },
   {
     //首页
     path:'/layout/:name',
@@ -69,7 +80,8 @@ export default new Router({
       },
       {//折+柱
         path:'/barline',
-        name:'BarLine', component:BarLine
+        name:'BarLine',
+        component:BarLine
       },
       {//雷达图
         path:'/radar',
@@ -98,6 +110,28 @@ export default new Router({
       },
     ],
   },
+    {//network
+      path:'/network',
+      name:'Network',
+      component:Network,
+      children:[
+        {
+          path: '/basicService',
+          name: 'basicService',
+          component: basicService
+        },
+        {
+          path:'/port',
+          name: 'Port',
+          component: Port
+        },
+        {
+          path: '/TCPIP',
+          name: 'TCPIP',
+          component: TCPIP
+        },
+      ]
+    },
   {
     path:'*', //404   通配符*
     component:NotFound

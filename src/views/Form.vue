@@ -13,7 +13,7 @@
     <el-form-item label="购买时间" required>
       <el-col :span="11">
         <el-form-item prop="date1">
-          <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
+          <el-date-picker placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
         </el-form-item>
       </el-col>
       <el-col class="line" :span="2">——</el-col>
@@ -36,8 +36,8 @@
     </el-form-item>
     <el-form-item label="特殊资源" prop="resource">
       <el-radio-group v-model="ruleForm.resource">
-        <el-radio label="111"></el-radio>
-        <el-radio label="2222"></el-radio>
+        <el-radio label="光之国能量源"></el-radio>
+        <el-radio label="魔仙堡能量源"></el-radio>
       </el-radio-group>
     </el-form-item>
     <el-form-item label="备注" prop="desc">
@@ -115,6 +115,7 @@ export default {
             console.log(res.data)
           })
           this.$message({message: '创建成功！', type: 'success'});//弹出成功提示框
+          this.$refs[formName].resetFields()
         } else {
           console.log('error submit!!');
           this.$message.error("创建失败，请按照格式正确填写");//弹出成功提示框

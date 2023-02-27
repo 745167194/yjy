@@ -7,7 +7,7 @@
           <el-form label-position="left" inline class="demo-table-expand">
             <el-form-item label="设备名称"><span>{{ props.row.name }}</span></el-form-item>
             <el-form-item label="使用项目"><span>{{ props.row.region }}</span></el-form-item>
-            <el-form-item label="购买时间"><span>{{ props.row.date1 }}</span></el-form-item>
+            <el-form-item label="购买时间"><span>{{ props.row.date.toString() }}</span></el-form-item>
             <el-form-item label="设备类型"><span>{{ props.row.type }}</span></el-form-item>
             <el-form-item label="特殊资源"><span>{{ props.row.resource }}</span></el-form-item>
             <el-form-item label="备注"><span>{{ props.row.desc }}</span></el-form-item>
@@ -44,7 +44,7 @@
         <el-form-item label="购买时间" required>
           <el-col :span="11">
             <el-form-item prop="date1">
-              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
+              <el-date-picker placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
             </el-form-item>
           </el-col>
           <el-col class="line" :span="2">——</el-col>
@@ -67,8 +67,8 @@
         </el-form-item>
         <el-form-item label="特殊资源" prop="resource">
           <el-radio-group v-model="ruleForm.resource">
-            <el-radio label="111"></el-radio>
-            <el-radio label="2222"></el-radio>
+            <el-radio label="光之国能量源"></el-radio>
+            <el-radio label="魔仙堡能量源"></el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="备注" prop="desc">
@@ -136,10 +136,10 @@
             { required: true, message: '请选择使用项目', trigger: 'change' }
           ],
           date1: [
-            { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+            {  required: true, message: '请选择日期', trigger: 'change' }
           ],
           date2: [
-            { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
+            {  required: true, message: '请选择时间', trigger: 'change' }
           ],
           type: [
             { type: 'array', required: true, message: '请至少选择一个设备类型', trigger: 'change' }
@@ -158,7 +158,7 @@
           "region": this.ruleForm.region,
           "date1": this.ruleForm.date1,
           "date2": this.ruleForm.date2,
-          "delivery": false,
+          "delivery": this.ruleForm.delivery,
           "type": this.ruleForm.type,
           "resource": this.ruleForm.resource,
           "desc": this.ruleForm.desc}).then(res=>{

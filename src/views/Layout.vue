@@ -62,6 +62,7 @@
         <el-header style="font-size: 12px;">
           <div style="float: left" @click="toggleCollapse"><i class="el-icon-s-fold"></i></div>
           <div style="float:right ">
+            <i class="el-icon-s-home" @click="toIndex"></i>
           <el-dropdown >
             <i class="el-icon-setting" style="margin-right: 15px"></i>
             <el-dropdown-menu slot="dropdown">
@@ -114,6 +115,9 @@
       toggleCollapse () {//菜单折叠与展开
         this.isCollapse = !this.isCollapse;
         console.log("collapse?"+this.isCollapse)
+      },
+      toIndex(){
+        this.$router.push({name:'Index'});
       }
     }
   }
@@ -129,7 +133,7 @@
     height:100%;
   }
   .el-menu-vertical:not(.el-menu--collapse) {
-    width: 240px;
+    width: 320px;
     height: 100%;
   }
 
