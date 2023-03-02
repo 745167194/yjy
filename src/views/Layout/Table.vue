@@ -7,7 +7,7 @@
           <el-form label-position="left" inline class="demo-table-expand">
             <el-form-item label="设备名称"><span>{{ props.row.name }}</span></el-form-item>
             <el-form-item label="使用项目"><span>{{ props.row.region }}</span></el-form-item>
-            <el-form-item label="购买时间"><span>{{ props.row.date.toString() }}</span></el-form-item>
+            <el-form-item label="购买时间"><span>{{ props.row.date }}</span></el-form-item>
             <el-form-item label="设备类型"><span>{{ props.row.type }}</span></el-form-item>
             <el-form-item label="特殊资源"><span>{{ props.row.resource }}</span></el-form-item>
             <el-form-item label="备注"><span>{{ props.row.desc }}</span></el-form-item>
@@ -30,7 +30,7 @@
       </el-table-column>
     </el-table>
 
-    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+    <el-dialog title="修改信息" :visible.sync="dialogFormVisible">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="设备名称" prop="name">
           <el-input v-model="ruleForm.name"></el-input>
@@ -44,7 +44,7 @@
         <el-form-item label="购买时间" required>
           <el-col :span="11">
             <el-form-item prop="date1">
-              <el-date-picker placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
+              <el-date-picker placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;" value-format ="yyyy-MM-dd"></el-date-picker>
             </el-form-item>
           </el-col>
           <el-col class="line" :span="2">——</el-col>
@@ -87,7 +87,7 @@
 
 <script>
   import axios from "axios";
-  import request from "../utils/request";
+  import request from "../../utils/request";
 
   export default {
     inject:['reload'],//注入刷新页面的依赖
@@ -153,7 +153,7 @@
     },
     methods: {
       changeInfo(form){
-        request.put('/DataTable/'+form.id,{
+        this.$api.table.updateTable(this.ruleForm.id,{
           "name": this.ruleForm.name,
           "region": this.ruleForm.region,
           "date1": this.ruleForm.date1,
@@ -180,32 +180,17 @@
         this.ruleForm.region=row.region
         this.ruleForm.resource=row.resource
         this.ruleForm.date2=row.date2
-        // - 修改操作
-        // 第二个参数：请求体传参对象
-       /* axios.patch('http://localhost:3000/brands/3',{
-          name: '奥拓'
-        }).then(res=>{
-          console.log('修改成功')
-        })
-
-        axios.put('http://localhost:3000/brands/3',{
-          name: '奥迪',
-          cTime: new Date()
-        }).then(res=>{
-          console.log('修改成功')
-        })*/
       },
       handleDelete(index) {
         console.log(index);
-        request.delete('/Datatable/'+index).then(res=>{
+        this.$api.table.deleteTable(index).then(res=>{
           this.$message({message: '删除成功！', type: 'success'});//弹出成功提示框
-        })
-        this.getTableData()//重新获得数据
-        this.reload()//刷新页面
+          this.reload()//刷新页面
+        });
       },
+
       getTableData(){
-        request.get('/Datatable').then(res=>{//获取数据
-          //console.log(res);
+        this.$api.table.getAllTableData().then(res=>{//获取数据
           this.tableData=res.data
         })
       }

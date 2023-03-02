@@ -21,14 +21,11 @@
       <el-container>
         <!--边栏导航-->
         <el-menu router :default-active="this.$route.path" :isCollapse="isCollapse" class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
-          <el-menu-item  index="/TCPIP">
-            <span slot="title"><i class="el-icon-s-home"></i>TCP/IP</span>
+          <el-menu-item  index="/general">
+            <span slot="title"><i class="el-icon-s-home"></i>General</span>
           </el-menu-item>
-          <el-menu-item  index="/port">
-            <span slot="title"><i class="el-icon-s-home"></i>Port</span>
-          </el-menu-item>
-          <el-menu-item  index="/basicService">
-            <span slot="title"><i class="el-icon-s-home"></i>basicService</span>
+          <el-menu-item  index="/account">
+            <span slot="title"><i class="el-icon-s-home"></i>Account</span>
           </el-menu-item>
         </el-menu>
 
@@ -43,7 +40,7 @@
 
 <script>
 export default {
-  name: 'Network',
+  name: 'LogIndex',
   data(){
     return {
       isCollapse: true,//true：菜单栏收缩；false：菜单栏展开
@@ -89,4 +86,5 @@ export default {
 }
 
 </style>
+
 

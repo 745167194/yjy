@@ -3,10 +3,10 @@
       <!--主页面-->
       <el-container>
         <el-header style="font-size: 12px;">
-          <div style="float: left" ><i class="el-icon-s-fold"></i></div>
           <div style="float:right ">
+            <i class="el-icon-s-home icon" style="font-size: 20px;margin-right: 5px" @click="toHome"></i>
             <el-dropdown >
-              <i class="el-icon-setting" style="margin-right: 15px"></i>
+              <i class="el-icon-setting icon" style="margin-right: 15px;font-size: 20px"></i>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>管理员中心</el-dropdown-item>
                 <el-dropdown-item @click.native="outlog">退出登录</el-dropdown-item>
@@ -35,7 +35,7 @@
             <div class="smallcon">
               storage
             </div>
-            <div class="smallcon" @click="system">
+            <div class="smallcon" @click="system"><i class="el-icon-s-fold" style="font-size: 28px"></i>
               System
             </div>
             <div class="smallcon">
@@ -72,16 +72,19 @@ export default {
       this.$router.push({name:'Network'});
     },
     system(){
-
+      this.$router.push({name:'System'});
     },
     myevent(){
 
     },
     log(){
-
+      this.$router.push({name:'LogIndex'});
     },
     camera(){
 
+    },
+    toHome(){
+      this.$router.push({name: 'Layout', params: {name: this.$store.getters.getAdmin.name}});
     }
   }
 }
@@ -110,5 +113,8 @@ export default {
   margin-top:20px;
   height:300px;
   margin-left:300px;
+}
+.icon:hover{
+  color:#828282;
 }
 </style>

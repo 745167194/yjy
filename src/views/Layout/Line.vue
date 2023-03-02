@@ -9,8 +9,9 @@
 <script>
 import echarts from "echarts";
 import axios from "axios";
-import request from "../utils/request";
+import request from "../../utils/request";
 import {log} from "util";
+
 
 export default {
   name:'Line',
@@ -153,10 +154,7 @@ export default {
   },
   //调用
   created() {
-    request({
-      method:'GET',
-      url:'/LineData'
-    }).then(res=>{
+    this.$api.chart.getLineData().then(res=>{
       console.log(res);
       this.opinionData1=res.data.opinionData1 //从json中获得数据1
       this.opinionData2=res.data.opinionData2 //从json中获得数据2

@@ -2,10 +2,15 @@
   <div style="height: 100%">
     <el-container>
         <!--边栏导航-->
-        <el-menu :default-openeds='defaultOpenedsArray' router :default-active="this.$route.path" :isCollapse="isCollapse" class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
+        <el-menu :default-openeds='defaultOpenedsArray' router :default-active="this.$route.path" :collapse="isCollapse"
+                 :collapse-transition="false" class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
           <!--默认导航index=1的打开-->
           <el-submenu index="1">
-            <template slot="title"><i class="el-icon-menu"></i>导航一</template>
+            <template slot="title" >
+              <i class="el-icon-menu">
+                <span slot="title" style="font-size:17px;margin-left: 10px">导航一</span>
+              </i>
+            </template>
             <el-menu-item index="1-1">
               <el-button @click="saveState">控制台信息</el-button>
             </el-menu-item>
@@ -23,7 +28,11 @@
             </el-submenu>
           </el-submenu>
           <el-submenu index="2">
-            <template slot="title"><i class="el-icon-menu"></i>导航二</template>
+            <template slot="title">
+              <i class="el-icon-menu">
+                <span slot="title" style="font-size:17px;margin-left: 10px">导航二</span>
+              </i>
+            </template>
             <el-menu-item index="/table">
               <span slot="title">table</span>
             </el-menu-item>
@@ -37,7 +46,11 @@
           </el-submenu>
 
           <el-submenu index="3">
-            <template slot="title"><i class="el-icon-menu"></i>导航三</template>
+            <template slot="title">
+              <i class="el-icon-menu">
+                <span slot="title" style="font-size:17px;margin-left: 10px">导航三</span>
+              </i>
+            </template>
             <el-menu-item index="/line">
               <span slot="title">line</span>
             </el-menu-item>
@@ -51,26 +64,24 @@
               <span slot="title">雷达图</span>
             </el-menu-item>
           </el-submenu>
-          <el-menu-item  :index="'/goMain/'+$store.getters.getAdmin.name">
-            <span slot="title"><i class="el-icon-s-home"></i>回到主页</span>
-          </el-menu-item>
         </el-menu>
 
 
       <!--主页面-->
       <el-container>
         <el-header style="font-size: 12px;">
-          <div style="float: left" @click="toggleCollapse"><i class="el-icon-s-fold"></i></div>
+          <div style="float: left;font-size: 20px;" class="toggle-button"><i class="el-icon-s-fold icon" @click="toggleCollapse"></i></div>
           <div style="float:right ">
-            <i class="el-icon-s-home" @click="toIndex"></i>
+            <i class="el-icon-s-grid icon" style="font-size: 20px;margin-right: 5px" @click="toIndex"></i>
+            <i class="el-icon-s-home icon" style="font-size: 20px;margin-right: 5px" @click="toHome"></i>
           <el-dropdown >
-            <i class="el-icon-setting" style="margin-right: 15px"></i>
+            <i class="el-icon-setting icon" style="margin-right: 15px;font-size: 20px"></i>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>管理员中心</el-dropdown-item>
               <el-dropdown-item @click.native="outlog">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span>{{$store.getters.getAdmin.name}}</span>
+          <span style="font-size: 12px">{{$store.getters.getAdmin.name}}</span>
           </div>
         </el-header>
 
@@ -88,7 +99,7 @@
     name: 'Layout',
     data(){
       return {
-        isCollapse: true,//true：菜单栏收缩；false：菜单栏展开
+        isCollapse: false,//true：菜单栏收缩；false：菜单栏展开
         defaultOpenedsArray:[]//默认打开打开的菜单
       }
     },
@@ -118,6 +129,9 @@
       },
       toIndex(){
         this.$router.push({name:'Index'});
+      },
+      toHome(){
+        this.$router.push({name: 'Layout', params: {name: this.$store.getters.getAdmin.name}});
       }
     }
   }
@@ -133,8 +147,11 @@
     height:100%;
   }
   .el-menu-vertical:not(.el-menu--collapse) {
-    width: 320px;
+    width: 240px;
     height: 100%;
+  }
+  .icon:hover{
+    color:#828282;
   }
 
 </style>

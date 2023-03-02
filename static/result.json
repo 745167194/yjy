@@ -55,43 +55,16 @@
   },
   "Datatable": [
     {
-      "name": "台式电脑6",
-      "region": "beijing",
-      "date1": "2023-02-07T16:00:00.000Z",
-      "date2": "2023-02-24T08:15:20.000Z",
-      "delivery": false,
-      "type": [
-        "类型四"
-      ],
-      "resource": "111",
-      "desc": "111111111",
-      "id": 6
-    },
-    {
-      "name": "台式电脑9",
-      "region": "beijing",
-      "date1": "2023-02-17T16:00:00.000Z",
-      "date2": "2023-02-24T08:15:20.000Z",
-      "delivery": false,
-      "type": [
-        "类型三",
-        "类型二"
-      ],
-      "resource": "111",
-      "desc": "111111111",
-      "id": 9
-    },
-    {
       "name": "光之国粒子仪",
       "region": "shanghai",
       "date1": "2023-02-13T16:00:00.000Z",
       "date2": "2023-02-24T08:19:40.000Z",
-      "delivery": false,
+      "delivery": true,
       "type": [
-        "类型一",
-        "类型二"
+        "类型三",
+        "类型四"
       ],
-      "resource": "2222",
+      "resource": "光之国能量源",
       "desc": "光之国特供",
       "id": 11
     },
@@ -105,7 +78,7 @@
         "类型三",
         "类型二"
       ],
-      "resource": "111",
+      "resource": "光之国能量源",
       "desc": "1111111",
       "id": 12
     },
@@ -118,7 +91,7 @@
       "type": [
         "类型二"
       ],
-      "resource": "111",
+      "resource": "魔仙堡能量源",
       "desc": "魔仙堡特供",
       "id": 13
     },
@@ -131,7 +104,7 @@
       "type": [
         "类型二"
       ],
-      "resource": "111",
+      "resource": "魔仙堡能量源",
       "desc": "古娜拉黑暗之神特产",
       "id": 14
     },
@@ -140,25 +113,29 @@
       "region": "项目二",
       "date1": "2023-02-24T16:00:00.000Z",
       "date2": "2023-02-27T01:58:51.000Z",
-      "delivery": false,
+      "delivery": true,
       "type": [
-        "类型一"
+        "类型一",
+        "类型四",
+        "类型三",
+        "类型二"
       ],
       "resource": "魔仙堡能量源",
-      "desc": "",
+      "desc": "魔仙堡特供",
       "id": 15
     },
     {
-      "name": "666",
-      "region": "项目二",
-      "date1": "2023-02-01T16:00:00.000Z",
-      "date2": "2023-02-27T03:47:30.000Z",
+      "name": "等离子火花塔",
+      "region": "项目一",
+      "date1": "2023-03-07T16:00:00.000Z",
+      "date2": "2023-03-01T06:58:13.000Z",
       "delivery": false,
       "type": [
-        "类型一"
+        "类型一",
+        "类型二"
       ],
       "resource": "光之国能量源",
-      "desc": "666",
+      "desc": "光之国特供",
       "id": 16
     }
   ],
@@ -190,6 +167,48 @@
       "amount1": 276,
       "amount2": 4.2,
       "amount3": 12
+    }
+  ],
+  "AdminData": [
+    {
+      "id": "20237778",
+      "account": "admin7778",
+      "password": "7778"
+    },
+    {
+      "id": "20239993",
+      "account": "admin9993",
+      "password": "9993"
+    }
+  ],
+  "LogData": [
+    {
+      "id": 1,
+      "time": "2023-03-01",
+      "type": "System",
+      "username": "System",
+      "content": "6666666666666666"
+    },
+    {
+      "id": 2,
+      "time": "2023-03-02",
+      "type": "Account",
+      "username": "admin",
+      "content": "6666666666666666"
+    },
+    {
+      "id": 3,
+      "time": "2023-03-01",
+      "type": "System",
+      "username": "System",
+      "content": "6666666666666666"
+    },
+    {
+      "id": 4,
+      "time": "2023-02-28",
+      "type": "Config",
+      "username": "admin",
+      "content": "6666666666666666"
     }
   ]
 }

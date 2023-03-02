@@ -13,7 +13,7 @@
     <el-form-item label="购买时间" required>
       <el-col :span="11">
         <el-form-item prop="date1">
-          <el-date-picker placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
+          <el-date-picker placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;" value-format ="yyyy-MM-dd"></el-date-picker>
         </el-form-item>
       </el-col>
       <el-col class="line" :span="2">——</el-col>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import request from "../utils/request";
+import request from "../../utils/request";
 
 export default {
   name: "Form",

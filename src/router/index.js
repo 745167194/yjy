@@ -3,24 +3,30 @@ import { listenerCount } from "node-notifier"
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../views/Login'
-import Layout from '../views/Layout.vue'
-import List from '../views/List'
-import Table from '../views/Table'
+import Layout from '../views/Layout/Layout.vue'
+import List from '../views/Layout/List.vue'
+import Table from '../views/Layout/Table.vue'
 import NotFound from '../views/NotFound'
-import Line from '../views/Line'
-import Pie from '../views/Main/Pie.vue'
-import BarLine from "../views/bar+line";
-import Form from "../views/Form";
-import Main from "../views/Main.vue"
-import Radar from "../views/Main/Radar.vue";
-import Upload from "../views/Upload.vue"
-import Tabs from "../views/Tabs.vue"
-import AxiosTest from "../views/AxiosTest.vue";
+import Line from '../views/Layout/Line.vue'
+import Pie from '../views/Layout/Main/Pie.vue'
+import BarLine from "../views/Layout/bar+line.vue";
+import Form from "../views/Layout/Form.vue";
+import Main from "../views/Layout/Main.vue"
+import Radar from "../views/Layout/Main/Radar.vue";
+import Upload from "../views/Layout/Upload.vue"
+import Tabs from "../views/Layout/Tabs.vue"
+import AxiosTest from "../views/Layout/AxiosTest.vue";
 import indexVue from "../views/Index.vue"
 import Network from "../views/Network/Network.vue";
 import TCPIP from "../views/Network/TCPIP.vue"
 import Port from "../views/Network/Port.vue"
 import basicService from "../views/Network/basicService.vue";
+import System from "../views/System/System.vue"
+import General from "../views/System/General.vue";
+import Account from "../views/System/Account.vue";
+import LogIndex from "../views/Log/Index.vue"
+import Log from "../views/Log/Log.vue";
+import RemoteLog from "../views/Log/Remote Log.vue";
 
 //import { component } from 'vue/types/umd';
 
@@ -130,6 +136,40 @@ export default new Router({
           name: 'TCPIP',
           component: TCPIP
         },
+      ]
+    },
+    {//System页面
+      path:'/system',
+      name:'System',
+      component:System,
+      children:[
+        {
+          path:'/general',
+          name:'General',
+          component: General
+        },
+        {
+          path:'/account',
+          name:'Account',
+          component: Account
+        }
+      ]
+    },
+    {//Log页面
+      path:'/logindex',
+      name:'LogIndex',
+      component:LogIndex,
+      children:[
+        {
+          path:'/log',
+          name:'Log',
+          component: Log,
+        },
+        {
+          path:'/remotelog',
+          name:'RemoteLog',
+          component: RemoteLog
+        }
       ]
     },
   {

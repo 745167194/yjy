@@ -1,5 +1,5 @@
 <template>
-  <div id="wifi">
+  <div id="wifi" >
     <div
       v-for="(item, index) in list"
       :key="index"
@@ -144,10 +144,12 @@ export default {
 #wifi {
   display: flex;
   .box {
+
     width: calc(100% / 6);
     display: flex;
   }
   .box-last {
+
     width: calc((100% / 6) - 8px);
     display: flex;
   }

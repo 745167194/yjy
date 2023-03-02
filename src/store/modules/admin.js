@@ -3,7 +3,8 @@ const admin={
   //取之前页面的state值，没有则new一个
   state : sessionStorage.getItem('state')?JSON.parse(sessionStorage.getItem('state')):{//第二个不加''
     admin: {
-      name: ''//APP中可save
+      name: '',//APP中可save
+      password:''
     }
   },
 

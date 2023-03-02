@@ -12,16 +12,19 @@ import store from './store'
 import echarts from 'echarts';
 import '../mock'
 import VueClipboard from "vue-clipboard2";
+import api from './api'
 
 Vue.use(ElementUI);//声明使用element
 Vue.use(VueRouter);//声明使用vue-router
 Vue.use(Vuex);//神功使用vuex
 Vue.use(VueClipboard);//使用VueClipboard，实现IP输入框
 Vue.prototype.axios = axios;//声明使用axios
-Vue.prototype.$echarts = echarts//引入echarts
+Vue.prototype.$echarts = echarts;//引入echarts
+Vue.prototype.$api = api;
 
 
 Vue.config.productionTip = false
+process.env.MOCK  &&  require( '../mock' )
 
 //每次路由跳转之前执行 钩子函数，不在vue实例中，所以不能用mounted
 router.beforeEach((to,from,next)=>{
@@ -57,3 +60,5 @@ new Vue({
   store,
   render: h => h(App)//element初始化
 })
+
+

@@ -11,7 +11,7 @@
 
 <script>
 import axios from "axios";
-
+import request from "../../utils/request";
 
 export default {
   name: "AxiosTest",
@@ -24,7 +24,8 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:3008/data').then(response=>this.info=response.data);
+    //axios.get('http://localhost:3008/data').then(response=>this.info=response.data);
+    request.get('/data').then(res=>this.info=res.data)
   }
 }
 </script>

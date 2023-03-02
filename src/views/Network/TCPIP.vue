@@ -2,7 +2,7 @@
   <div>
     <el-form :model="Form" ref="Form" label-width="150px">
       <el-form-item label="Host Name" prop="host_name">
-        <el-input v-model="Form.host_name" ></el-input>
+        <el-input style="width: 220px" v-model="Form.host_name" ></el-input>
       </el-form-item>
       <el-form-item label="ARP/Ping" prop="ARP_Ping">
         <el-switch v-model="Form.ARP_Ping"></el-switch>
@@ -19,9 +19,9 @@
         </el-radio-group>
       </el-form-item>
 
-      <el-form-item label="IP Address:" prop="IPversion"  >
+      <el-form-item label="Mac Address:" prop="IPversion"  >
         <!--MAC地址-->
-        <macInput v-model="Form.WifiMac" :value="Form.WifiMac"/>
+        <macInput style="width: 440px" v-model="Form.WifiMac" :value="Form.WifiMac"/>
       </el-form-item>
 
       <el-form-item label="IP Version" prop="IPversion">
@@ -32,23 +32,23 @@
       </el-form-item>
       <el-form-item label="IP Address:" prop="IPversion"  >
         <!--key每次点击开始刷新，保证无缓存，以免残留上一次的ip信息；autoFocus是判断IP输入框是否需要自动聚焦-->
-        <ipInput @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
+        <ipInput style="width: 220px" @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
       </el-form-item>
       <el-form-item label="Subnet Mask:" prop="SubnetMask" >
         <!--key每次点击开始刷新，保证无缓存，以免残留上一次的ip信息；autoFocus是判断IP输入框是否需要自动聚焦-->
-        <ipInput @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
+        <ipInput style="width: 220px" @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
       </el-form-item>
       <el-form-item label="Default Gateway:" prop="DefaultGateway" >
         <!--key每次点击开始刷新，保证无缓存，以免残留上一次的ip信息；autoFocus是判断IP输入框是否需要自动聚焦-->
-        <ipInput @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
+        <ipInput style="width: 220px" @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
       </el-form-item>
       <el-form-item label="Preferred DNS:" prop="PreferredDNS">
         <!--key每次点击开始刷新，保证无缓存，以免残留上一次的ip信息；autoFocus是判断IP输入框是否需要自动聚焦-->
-        <ipInput @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
+        <ipInput style="width: 220px" @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
       </el-form-item>
       <el-form-item label="Alternate DNS:" prop="AlternateDNS">
         <!--key每次点击开始刷新，保证无缓存，以免残留上一次的ip信息；autoFocus是判断IP输入框是否需要自动聚焦-->
-        <ipInput @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
+        <ipInput style="width: 220px" @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
       </el-form-item>
 
 
@@ -70,17 +70,16 @@ export default {
   data(){
     return{
       Form: {//表单数据
-        host_name: '',
+        host_name: 'IPC',
         ARP_Ping: true,
-        NIC: '7',
-        Mode: '7',
+        NIC: 'Wired(Default)',
+        Mode: 'Static',
         WifiMac:'',
-        IPVersion:'7',
+        IPVersion:'IPv4',
         SubnetMask:'',
         DefaultGateway:'',
         PreferredDNS:'',
         AlternateDNS:'',
-
       },
     }
   },
@@ -90,16 +89,7 @@ export default {
   },
   methods:{
     submitForm(formName) {
-      //console.log("fromname:"+JSON.stringify(this.Form));
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.$message({message: '创建成功！', type: 'success'});//弹出成功提示框
-        } else {
-          console.log('error submit!!');
-          this.$message.error("创建失败");//弹出成功提示框
-          return false;
-        }
-      });
+
     },
     Refresh(form){
 
