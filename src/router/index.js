@@ -8,11 +8,11 @@ import List from '../views/Layout/List.vue'
 import Table from '../views/Layout/Table.vue'
 import NotFound from '../views/NotFound'
 import Line from '../views/Layout/Line.vue'
-import Pie from '../views/Layout/Main/Pie.vue'
+import Pie from '../components/Main/Pie.vue'
 import BarLine from "../views/Layout/bar+line.vue";
 import Form from "../views/Layout/Form.vue";
 import Main from "../views/Layout/Main.vue"
-import Radar from "../views/Layout/Main/Radar.vue";
+import Radar from "../components/Main/Radar.vue";
 import Upload from "../views/Layout/Upload.vue"
 import Tabs from "../views/Layout/Tabs.vue"
 import AxiosTest from "../views/Layout/AxiosTest.vue";
@@ -27,6 +27,9 @@ import Account from "../views/System/Account.vue";
 import LogIndex from "../views/Log/Index.vue"
 import Log from "../views/Log/Log.vue";
 import RemoteLog from "../views/Log/Remote Log.vue";
+import EventIndex from "../views/Event/index.vue"
+import Alarm from "../views/Event/Alarm.vue"
+
 
 //import { component } from 'vue/types/umd';
 
@@ -171,6 +174,20 @@ export default new Router({
           component: RemoteLog
         }
       ]
+    },
+    {//Event页面
+      path:'/eventindex',
+      name:'EventIndex',
+      component:EventIndex,
+      children:[
+        {
+          path:'/alarm',
+          name:'Alarm',
+          component: Alarm
+        }
+
+      ]
+
     },
   {
     path:'*', //404   通配符*

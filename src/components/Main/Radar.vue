@@ -1,14 +1,24 @@
 <template>
-  <div id="leiDaTu" class="echart" style="height: 600px;width: 600px"></div>
+  <div class="myRadar" ref="container">
+    <div  id="radar" style="height: 100%;width:100%;"></div>
+  </div>
 </template>
 
 <script>
+import echarts from "echarts";
+
 export default {
   name: "Radar",
+  data(){
+    return{
+      radius:'140px',
+      mychart:'',
+      flag:true,
+    }
+  },
   methods: {
-    drawPie() {
-      let charts = this.$echarts.init(document.getElementById('leiDaTu'));
-      var option = {
+    myOption() {
+      let option = {
         title: {
           text: '各教育阶段男女人数统计',
           target: 'blank',
@@ -52,7 +62,7 @@ export default {
 
         radar: [{                       // 雷达图坐标系组件，只适用于雷达图。
           center: ['50%', '50%'],             // 圆中心坐标，数组的第一项是横坐标，第二项是纵坐标。[ default: ['50%', '50%'] ]
-          radius: 140,                        // 圆的半径，数组的第一项是内半径，第二项是外半径。
+          radius: this.radius,                        // 圆的半径，数组的第一项是内半径，第二项是外半径。
           startAngle: 90,                     // 坐标系起始角度，也就是第一个指示器轴的角度。[ default: 90 ]
           name: {                             // (圆外的标签)雷达图每个指示器名称的配置项。
             formatter: '{value}',
@@ -176,7 +186,7 @@ export default {
             },
             lineStyle: {
               normal: {
-                opacity: 0.5
+                opacity: 0
               }
             },
             areaStyle: {
@@ -187,17 +197,52 @@ export default {
           }]
         }, ]
       }
-      charts.setOption(option);
+      return option
+    },
+    drawRadar(id){
+      this.mychart = echarts.init(document.getElementById(id))     //初始化echarts实例
+      let option = this.myOption()
+      if(this.flag){
+        this.mychart.setOption(option)
+        this.flag=false
+      }
+      else {
+        option.animation=false
+        this.mychart.setOption(option)
+      }
+    },
+    reDraw(){
+      this.mychart = echarts.init(document.getElementById('radar'));
+      this.mychart.dispose()  //clear只清除数据部分,dispose消除实例
+      this.drawRadar('radar')
+    },
+    listener(){
+      this.radius = (window.innerWidth*0.1)+'px'
+      this.reDraw()
     }
   },
   mounted() {
-    this.$nextTick(function() {
-      this.drawPie('leiDaTu')
-    })
-  }
+    window.addEventListener('resize', this.listener),
+      this.$nextTick(function() {//绘图
+        this.drawRadar('radar')//main是容器id
+        this.num++;
+      });
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize",this.listener);
+    if (!this.mychart) {
+      return
+    }
+    this.mychart.dispose()
+    this.mychart = null
+  },
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.myRadar{
+  width: 100%;
+  height:100%;
+}
 
 </style>

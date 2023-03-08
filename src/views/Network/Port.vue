@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :model="Form" ref="Form" label-width="150px" :rules="FormRules">
+    <el-form :model="Form" ref="Form" label-width="150px" :rules="FormRules" label-position="left">
       <el-form-item label="Max Connection:" prop="MaxConnection">
         <div style="display:flex">
         <el-input-number v-model="Form.MaxConnection" :min="1" :max="20" label="请输入数量"></el-input-number>
@@ -57,8 +57,8 @@
 </template>
 
 <script>
-import ipInput from "../../components/ipInput.vue";
-import macInput from "../../components/macInput.vue";
+import ipInput from "../../components/Input/ipInput.vue";
+import macInput from "../../components/Input/macInput.vue";
 import {number} from "echarts/lib/export";
 
 export default {

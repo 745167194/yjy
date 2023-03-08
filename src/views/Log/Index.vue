@@ -78,7 +78,7 @@ export default {
   height:100%;
 }
 .el-menu-vertical:not(.el-menu--collapse) {
-  width: 320px;
+  width: 240px;
   height: 100%;
 }
 .icon:hover{

@@ -1,7 +1,7 @@
 <template>
-  <div id="test_app" style="width:100%;height:100%">
+  <div class="line">
     <!--echarts的容器-->
-    <div id="main" style="width:100%;height:100%"></div>
+    <div id="main" style="width:100%;height:100% ;"></div>
   </div>
 </template>
 
@@ -9,9 +9,6 @@
 <script>
 import echarts from "echarts";
 import axios from "axios";
-import request from "../../utils/request";
-import {log} from "util";
-
 
 export default {
   name:'Line',
@@ -25,6 +22,7 @@ export default {
   methods: {
     drawLine(id) {
       this.charts = echarts.init(document.getElementById(id))     //初始化echarts实例
+      //window.addEventListener('resize',() => { this.charts.resize(); });
       this.charts.setOption({      //setOption进行绘图
         //backgroundColor: '#394056',
         title:{   //标题设置
@@ -150,14 +148,16 @@ export default {
           }
         ]
       })
+      window.onresize = this.charts.resize;//重绘
     }
   },
   //调用
-  created() {
-    this.$api.chart.getLineData().then(res=>{
-      console.log(res);
-      this.opinionData1=res.data.opinionData1 //从json中获得数据1
-      this.opinionData2=res.data.opinionData2 //从json中获得数据2
+  mounted() {
+    //this.$api.chart.getLineData()
+      axios.get('/LineData').then(res=>{
+      console.log(res.data.optionData1);
+      this.opinionData1=res.data.optionData1 //从json中获得数据1  注意opinion与option不同
+      this.opinionData2=res.data.optionData2 //从json中获得数据2
 
       console.log(this.opinionData1+'+'+this.opinionData2)
 
@@ -179,6 +179,13 @@ export default {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+.line{
+  border:1px solid #DCDFE6;
+  box-shadow:0 0 30px #DCDFE6;
+  border-radius:5px;
+  height: 100%;
+
 }
 
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :model="Form" ref="Form" label-width="150px">
+    <el-form :model="Form" ref="Form" label-width="150px" label-position="left">
       <el-form-item label="Host Name" prop="host_name">
         <el-input style="width: 220px" v-model="Form.host_name" ></el-input>
       </el-form-item>
@@ -19,7 +19,7 @@
         </el-radio-group>
       </el-form-item>
 
-      <el-form-item label="Mac Address:" prop="IPversion"  >
+      <el-form-item label="Mac Address:" prop="WifiMac"  >
         <!--MAC地址-->
         <macInput style="width: 440px" v-model="Form.WifiMac" :value="Form.WifiMac"/>
       </el-form-item>
@@ -30,25 +30,20 @@
           <el-option label="IPv6" value="IPv6" ></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="IP Address:" prop="IPversion"  >
-        <!--key每次点击开始刷新，保证无缓存，以免残留上一次的ip信息；autoFocus是判断IP输入框是否需要自动聚焦-->
-        <ipInput style="width: 220px" @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
+      <el-form-item label="IP Address:" prop="IPAddress"  >
+        <ipInput style="width: 220px" ref="ip" v-model="Form.IPAddress"></ipInput>
       </el-form-item>
       <el-form-item label="Subnet Mask:" prop="SubnetMask" >
-        <!--key每次点击开始刷新，保证无缓存，以免残留上一次的ip信息；autoFocus是判断IP输入框是否需要自动聚焦-->
-        <ipInput style="width: 220px" @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
+        <ipInput style="width: 220px" ref="ip" v-model="Form.SubnetMask" :autoFocus="true"></ipInput>
       </el-form-item>
-      <el-form-item label="Default Gateway:" prop="DefaultGateway" >
-        <!--key每次点击开始刷新，保证无缓存，以免残留上一次的ip信息；autoFocus是判断IP输入框是否需要自动聚焦-->
-        <ipInput style="width: 220px" @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
+      <el-form-item label="Default Gateway:" prop="DefaultGateway" style="margin-top: 5px">
+        <ipInput style="width: 220px" ref="ip" v-model="Form.DefaultGateway" :autoFocus="true"></ipInput>
       </el-form-item>
-      <el-form-item label="Preferred DNS:" prop="PreferredDNS">
-        <!--key每次点击开始刷新，保证无缓存，以免残留上一次的ip信息；autoFocus是判断IP输入框是否需要自动聚焦-->
-        <ipInput style="width: 220px" @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
+      <el-form-item label="Preferred DNS:" prop="PreferredDNS" style="margin-top: 5px">
+        <ipInput style="width: 220px" ref="ip" v-model="Form.PreferredDNS" ></ipInput>
       </el-form-item>
       <el-form-item label="Alternate DNS:" prop="AlternateDNS">
-        <!--key每次点击开始刷新，保证无缓存，以免残留上一次的ip信息；autoFocus是判断IP输入框是否需要自动聚焦-->
-        <ipInput style="width: 220px" @getIp="getIp" :iPType="'ip'" :autoFocus="true"></ipInput>
+        <ipInput style="width: 220px" ref="ip" v-model="Form.AlternateDNS" ></ipInput>
       </el-form-item>
 
 
@@ -63,8 +58,8 @@
 
 <script>
 import request from "../../utils/request";
-import ipInput from "../../components/ipInput.vue";
-import macInput from "../../components/macInput.vue";
+import ipInput from "../../components/Input/ipInput.vue";
+import macInput from "../../components/Input/macInput.vue";
 export default {
   name: "TCPIP",
   data(){
@@ -76,7 +71,8 @@ export default {
         Mode: 'Static',
         WifiMac:'',
         IPVersion:'IPv4',
-        SubnetMask:'',
+        IPAddress:'',
+        SubnetMask:'255255255255',
         DefaultGateway:'',
         PreferredDNS:'',
         AlternateDNS:'',
@@ -89,6 +85,8 @@ export default {
   },
   methods:{
     submitForm(formName) {
+      console.log("掩码:"+this.Form.SubnetMask)
+      console.log("MAC地址:"+this.Form.WifiMac)
 
     },
     Refresh(form){
@@ -97,9 +95,6 @@ export default {
     Default(form){
 
     },
-    getIp(data){
-      this.ipInfo=data;
-    }
   }
 }
 </script>

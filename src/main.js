@@ -13,7 +13,10 @@ import echarts from 'echarts';
 import '../mock'
 import VueClipboard from "vue-clipboard2";
 import api from './api'
+import elementResizeDetectorMaker from "element-resize-detector"
+import 'default-passive-events'
 
+Vue.prototype.$erd = elementResizeDetectorMaker();
 Vue.use(ElementUI);//声明使用element
 Vue.use(VueRouter);//声明使用vue-router
 Vue.use(Vuex);//神功使用vuex
@@ -48,10 +51,21 @@ router.beforeEach((to,from,next)=>{
     next({path:'/login'});
     console.log("3");
   }
-
   next();//跳到下一个钩子函数
-
 })
+
+//一下两个函数解决Navigating to current location (XXX) is not allowed  多次点击跳转同一个路由是不被允许的
+//push
+const VueRouterPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (to) {
+  return VueRouterPush.call(this, to).catch(err => err)
+}
+
+//replace
+const VueRouterReplace = VueRouter.prototype.replace
+VueRouter.prototype.replace = function replace (to) {
+  return VueRouterReplace.call(this, to).catch(err => err)
+}
 
 /* eslint-disable no-new */
 new Vue({

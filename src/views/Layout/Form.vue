@@ -19,7 +19,7 @@
       <el-col class="line" :span="2">——</el-col>
       <el-col :span="11">
         <el-form-item prop="date2">
-          <el-time-picker placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;"></el-time-picker>
+          <el-time-picker placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;" value-format ="HH:mm:ss"></el-time-picker>
         </el-form-item>
       </el-col>
     </el-form-item>
@@ -82,10 +82,10 @@ export default {
           { required: true, message: '请选择使用项目', trigger: 'change' }
         ],
         date1: [
-          { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+          { type: 'string', required: true, message: '请选择日期', trigger: 'change' }
         ],
         date2: [
-          { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
+          { type: 'string', required: true, message: '请选择时间', trigger: 'change' }
         ],
         type: [
           { type: 'array', required: true, message: '请至少选择一个设备类型', trigger: 'change' }

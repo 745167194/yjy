@@ -20,7 +20,16 @@
         </el-form>
 
       </el-tab-pane>
-      <el-tab-pane label="Date & Time" name="DT">配置管理</el-tab-pane>
+      <el-tab-pane label="Date & Time" name="DT">
+        <div class="time_box">
+          <template>
+            <div >Data</div>
+            <span ><h2>{{ date }}</h2></span>
+            <div>time</div>
+            <span ><h2>{{ time }}</h2></span>
+          </template>
+        </div>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -34,7 +43,9 @@ export default {
       Form:{
         Dev:'',
         VS:'1'
-      }
+      },
+      time: '',
+      date: '',
     };
   },
   methods: {
@@ -42,7 +53,6 @@ export default {
       console.log(tab, event);
     },
     submitForm(formName) {
-      //console.log("fromname:"+JSON.stringify(this.Form));
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$message({message: '创建成功！', type: 'success'});//弹出成功提示框
@@ -59,10 +69,41 @@ export default {
     Default(form){
 
     },
-  }
+
+    Timer(){
+      let timerID = setInterval(this.updateTime, 1000);
+      this.updateTime();
+      return timerID
+    },
+    updateTime() {
+      // var week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+      let cd = new Date();
+      this.time = this.zeroPadding(cd.getHours(), 2) + ':' + this.zeroPadding(cd.getMinutes(), 2) + ':' + this.zeroPadding(cd.getSeconds(), 2);
+      this.date = this.zeroPadding(cd.getFullYear(), 4) + '-' + this.zeroPadding(cd.getMonth()+1, 2) + '-' + this.zeroPadding(cd.getDate(), 2);
+    },
+    zeroPadding(num, digit) {
+      let zero = '';
+      for(let i = 0; i < digit; i++) {
+        zero += '0';
+      }
+      return (zero + num).slice(-digit);
+    }
+  },
+  mounted(){
+    this.Timer();
+  },
+
+
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.time_box{
+  width: 100%;
+  height: 200px;
+  margin: 10px;
+  border-color: #828282;
+
+}
 
 </style>

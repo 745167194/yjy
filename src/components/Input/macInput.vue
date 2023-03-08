@@ -1,18 +1,7 @@
 <template>
   <div id="wifi" >
-    <div
-      v-for="(item, index) in list"
-      :key="index"
-      :class="index !== list.length - 1 ? 'box' : 'box-last'"
-    >
-      <el-input
-        v-model="item.value"
-        ref="contentWrap"
-        @input="input(item.value, index)"
-        maxlength="2"
-        @change="change()"
-        :disabled="isDisabled"
-      />
+    <div v-for="(item, index) in list" :key="index" :class="index !== list.length - 1 ? 'box' : 'box-last'">
+      <el-input v-model="item.value" ref="contentWrap" @input="input(item.value, index)" maxlength="2" @change="change()" :disabled="isDisabled"/>
       <span class="split" v-show="index !== list.length - 1"> : </span>
     </div>
   </div>
@@ -27,10 +16,10 @@ export default {
       type: String,
       default: '',
     },
-    isDisabled: {
+    /*isDisabled: {
       type: Boolean,
       default: false,
-    },
+    },*/
   },
   computed: {},
   mounted() {},
@@ -130,7 +119,7 @@ export default {
         });
       } else {
         this.$nextTick(() => {
-          if (this.list[index].value == '') {
+          if (this.list[index].value === '') {
             this.$refs.contentWrap[index - 1].focus();
           }
         });
@@ -144,7 +133,6 @@ export default {
 #wifi {
   display: flex;
   .box {
-
     width: calc(100% / 6);
     display: flex;
   }

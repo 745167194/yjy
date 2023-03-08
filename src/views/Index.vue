@@ -22,7 +22,7 @@
               local
             </div>
             <div class="smallcon" @click="camera">
-              camera
+              Chart
             </div>
             <div class="smallcon" @click="network">
               Network
@@ -35,7 +35,7 @@
             <div class="smallcon">
               storage
             </div>
-            <div class="smallcon" @click="system"><i class="el-icon-s-fold" style="font-size: 28px"></i>
+            <div class="smallcon" @click="system">
               System
             </div>
             <div class="smallcon">
@@ -75,7 +75,7 @@ export default {
       this.$router.push({name:'System'});
     },
     myevent(){
-
+      this.$router.push({name:'EventIndex'});
     },
     log(){
       this.$router.push({name:'LogIndex'});

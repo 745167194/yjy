@@ -42,8 +42,8 @@
         </div>
 
       </el-tab-pane>
-      <el-tab-pane label="Group" name="Group"></el-tab-pane>
-      <el-tab-pane label="ONVIF" name="ONVIF"></el-tab-pane>
+      <el-tab-pane label="2" name="Group"></el-tab-pane>
+      <el-tab-pane label="3" name="ONVIF"></el-tab-pane>
     </el-tabs>
   </div>
 </template>

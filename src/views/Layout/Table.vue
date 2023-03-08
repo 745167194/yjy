@@ -190,9 +190,12 @@
       },
 
       getTableData(){
-        this.$api.table.getAllTableData().then(res=>{//获取数据
-          this.tableData=res.data
+        axios.get('/getTableData').then(res=>{
+          this.tableData=res.data.list
         })
+        // this.$api.table.getAllTableData().then(res=>{//获取数据
+        //   this.tableData=res.data
+        // })
       }
     },
     mounted() {
