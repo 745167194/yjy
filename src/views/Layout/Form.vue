@@ -12,14 +12,14 @@
     </el-form-item>
     <el-form-item label="购买时间" required>
       <el-col :span="11">
-        <el-form-item prop="date1">
-          <el-date-picker placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;" value-format ="yyyy-MM-dd"></el-date-picker>
+        <el-form-item prop="date">
+          <el-date-picker placeholder="选择日期" v-model="ruleForm.date" style="width: 100%;" value-format ="yyyy-MM-dd"></el-date-picker>
         </el-form-item>
       </el-col>
       <el-col class="line" :span="2">——</el-col>
       <el-col :span="11">
-        <el-form-item prop="date2">
-          <el-time-picker placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;" value-format ="HH:mm:ss"></el-time-picker>
+        <el-form-item prop="time">
+          <el-time-picker placeholder="选择时间" v-model="ruleForm.time" style="width: 100%;" value-format ="HH:mm:ss"></el-time-picker>
         </el-form-item>
       </el-col>
     </el-form-item>
@@ -43,9 +43,6 @@
     <el-form-item label="备注" prop="desc">
       <el-input type="textarea" v-model="ruleForm.desc"></el-input>
     </el-form-item>
-    <!--<el-form-item label="双向选择框" prop="">
-      <el-transfer filterable :filter-method="filterMethod" filter-placeholder="请输入城市拼音" v-model="value" :data="transformData"></el-transfer>
-    </el-form-item>-->
     <el-form-item>
       <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
       <el-button  style="margin: 20px" @click="resetForm('ruleForm')">重置</el-button>
@@ -57,6 +54,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import request from "../../utils/request";
 
 export default {
@@ -66,8 +64,8 @@ export default {
       ruleForm: {//表单数据
         name: '',
         region: '',
-        date1: '',
-        date2: '',
+        date: '',
+        time: '',
         delivery: false,
         type: [],
         resource: '',
@@ -81,10 +79,10 @@ export default {
         region: [
           { required: true, message: '请选择使用项目', trigger: 'change' }
         ],
-        date1: [
+        date: [
           { type: 'string', required: true, message: '请选择日期', trigger: 'change' }
         ],
-        date2: [
+        time: [
           { type: 'string', required: true, message: '请选择时间', trigger: 'change' }
         ],
         type: [
@@ -101,21 +99,20 @@ export default {
       console.log("fromname:"+JSON.stringify(this.ruleForm));
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          request.post('/Datatable',//参数，新增不需要id
-            {"name": this.ruleForm.name,
+          this.$api.table.addTable({
+            "name": this.ruleForm.name,
             "region": this.ruleForm.region,
-            "date1": this.ruleForm.date1,
-            "date2": this.ruleForm.date2,
+            "date": this.ruleForm.date,
+            "time": this.ruleForm.time,
             "delivery": false,
             "type": this.ruleForm.type,
             "resource": this.ruleForm.resource,
-            "desc": this.ruleForm.desc}
-            //JSON.stringify(this.ruleForm) //这样不行，他会是：JSON.stringify(this.ruleForm)：""
-          ).then(res=>{
+            "desc": this.ruleForm.desc})//参数，新增不需要id
+          .then(res=>{
             console.log(res.data)
+            this.$message({message: '创建成功！', type: 'success'});//弹出成功提示框
+            this.$refs[formName].resetFields()
           })
-          this.$message({message: '创建成功！', type: 'success'});//弹出成功提示框
-          this.$refs[formName].resetFields()
         } else {
           console.log('error submit!!');
           this.$message.error("创建失败，请按照格式正确填写");//弹出成功提示框

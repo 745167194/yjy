@@ -53,7 +53,7 @@ export default {
     logout(){
       console.log("退出登录");
       sessionStorage.setItem('isLogin',false);//设置登录状态
-      this.$router.push({name:'Login'});
+      this.$router.push('/logout');
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);

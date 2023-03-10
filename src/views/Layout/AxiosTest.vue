@@ -18,14 +18,14 @@ export default {
   data(){
     return {
       info:{
-        username:'',
-        id:''
+        username:'www',
+        id:'www'
       }
     }
   },
   mounted() {
     //axios.get('http://localhost:3008/data').then(response=>this.info=response.data);
-    request.get('/data').then(res=>this.info=res.data)
+    //request.get('/data').then(res=>this.info=res.data)
   }
 }
 </script>

@@ -12,7 +12,7 @@
               </i>
             </template>
             <el-menu-item index="1-1">
-              <el-button @click="saveState">控制台信息</el-button>
+              <span slot="title">空</span>
             </el-menu-item>
             <el-menu-item index="/upload">
               <span slot="title">上传文件</span>
@@ -78,7 +78,7 @@
             <i class="el-icon-setting icon" style="margin-right: 15px;font-size: 20px"></i>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>管理员中心</el-dropdown-item>
-              <el-dropdown-item @click.native="outlog">退出登录</el-dropdown-item>
+              <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
           <span style="font-size: 12px">{{$store.getters.getAdmin.name}}</span>
@@ -112,8 +112,8 @@
         //console.log("state:"+sessionStorage.getItem('state'));
         //sessionStorage只能传递字符串,所以将state转化为JSON类型的字符串来存储state
       },
-      outlog(){
-        console.log("退出登录");
+      logout(){
+        //console.log("退出登录");
         sessionStorage.setItem('isLogin',false);//设置登录状态
         this.$router.push({name:'Login'});
       },

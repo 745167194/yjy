@@ -10,7 +10,7 @@
           <el-option label="System" value="System"></el-option>
           <el-option label="Config" value="Config"></el-option>
           <el-option label="Storage" value="Storage"></el-option>
-          <el-option label="Alarm Event" value="Alarm"></el-option>
+          <el-option label="Alarm Event" value="Alarm Event"></el-option>
           <el-option label="Record" value="Record"></el-option>
           <el-option label="Account" value="Account"></el-option>
           <el-option label="Security" value="Security"></el-option>
@@ -66,11 +66,11 @@ export default {
     search(){
       this.$api.log.search(this.Form.time,this.Form.type).then(res=>{
         this.LogData=res.data;
-        console.log("search data:"+res.data);
+        console.log("search data:",res.data);
       })
     },
     getLogData(){
-      this.$api.log.getAll().then(res=>{
+      this.$api.log.getAllLog().then(res=>{
         this.LogData=res.data;
       })
     }
@@ -87,7 +87,6 @@ export default {
   font-size: 0;
 }
 .demo-table-expand label {
-  margin-left: 100px;
   width: 120px;
   color: #99a9bf;
 }

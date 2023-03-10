@@ -1,5 +1,9 @@
 // 将所有的mock文件引入
+require('./adminmock')
 require('./devmock')
+require('./log')
+require('./slider')
+import DevAPI from './devmock'
 
 // 在这里可以做一些通用的配置
 //导入Mock依赖
@@ -8,3 +12,4 @@ const  Mock  =  require( "mockjs" )
 Mock.setup({
   timeout:  0 - 300
 })
+

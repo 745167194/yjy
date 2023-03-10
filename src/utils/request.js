@@ -3,7 +3,7 @@ import axios from "axios";
 
 const request = axios.create({
   //baseURL:'http://localhost:3008',
-  baseURL:'http://localhost:8080'
+  baseURL:'http://localhost:8080',
 })
 
 

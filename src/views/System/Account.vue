@@ -12,9 +12,9 @@
           </el-form>
         </div>
         <div>
-          <el-table ref="multipleTable" :data="AdminData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-            <el-table-column type="selection" width="55"></el-table-column>
-            <el-table-column prop="id" label="ID" width="120"></el-table-column>
+          <el-table ref="multipleTable" :data="AdminData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange" >
+            <el-table-column type="selection" width="100" ></el-table-column>
+            <el-table-column prop="id" label="ID" width="400"></el-table-column>
             <el-table-column prop="account" label="Account" show-overflow-tooltip></el-table-column>
           </el-table>
         </div>
@@ -77,7 +77,7 @@ export default {
      // console.log("add admin")
       if(this.AddForm.password===this.AddForm.acPassword){
         this.$api.account.addAdmin(this.AddForm.id,this.AddForm.account,this.AddForm.password).then(res=>{
-          this.getAdmin()
+          this.AdminData=res.data.data
         })
         this.dialogFormVisible = false
       }
@@ -96,13 +96,14 @@ export default {
         callback: action => {
           if (action === 'confirm') {
             //批量删除
-            this.$api.account.deleteAdmin(arr)
-            this.$message({
-              message: '删除成功！',
-              type: 'success'
-            });
-            this.getAdmin()
-            console.log(this.AdminData)
+            this.$api.account.deleteAdmin(arr).then(res=>{
+              this.AdminData=res.data.data
+              this.$message({
+                message: '删除成功！',
+                type: 'success'
+              });
+            })
+
           }
         }
       })

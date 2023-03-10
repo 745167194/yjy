@@ -185,12 +185,12 @@ export default new Router({
           name:'Alarm',
           component: Alarm
         }
-
       ]
 
     },
   {
     path:'*', //404   通配符*
     component:NotFound
-  }]
+  },
+  ]
 })

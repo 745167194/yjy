@@ -7,7 +7,8 @@
           <el-form label-position="left" inline class="demo-table-expand">
             <el-form-item label="设备名称"><span>{{ props.row.name }}</span></el-form-item>
             <el-form-item label="使用项目"><span>{{ props.row.region }}</span></el-form-item>
-            <el-form-item label="购买时间"><span>{{ props.row.date }}</span></el-form-item>
+            <el-form-item label="购买日期"><span>{{ props.row.date }}</span></el-form-item>
+            <el-form-item v-if="visual" label="购买时间"><span>{{ props.row.time }}</span></el-form-item>
             <el-form-item label="设备类型"><span>{{ props.row.type }}</span></el-form-item>
             <el-form-item label="特殊资源"><span>{{ props.row.resource }}</span></el-form-item>
             <el-form-item label="备注"><span>{{ props.row.desc }}</span></el-form-item>
@@ -15,7 +16,9 @@
         </template>
       </el-table-column>
       <el-table-column label="Name" prop="name"></el-table-column>
-      <el-table-column label="Date" prop="date1"></el-table-column>
+      <el-table-column label="Date" prop="date,time">
+        <template slot-scope="scope"> {{scope.row.date}} {{scope.row.time }}</template>
+      </el-table-column>
       <el-table-column label="Region" prop="region"></el-table-column>
       <el-table-column label="Type" prop="type"></el-table-column>
       <el-table-column label="Resource" prop="resource"></el-table-column>
@@ -24,7 +27,7 @@
           <el-input v-model="search" size="mini" placeholder="输入关键字搜索"/>
         </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.row.id, scope.row)" >Edit</el-button>
+          <el-button size="mini" @click="handleEdit(scope.row)" >Edit</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">Delete</el-button>
         </template>
       </el-table-column>
@@ -43,14 +46,14 @@
         </el-form-item>
         <el-form-item label="购买时间" required>
           <el-col :span="11">
-            <el-form-item prop="date1">
-              <el-date-picker placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;" value-format ="yyyy-MM-dd"></el-date-picker>
+            <el-form-item prop="date">
+              <el-date-picker placeholder="选择日期" v-model="ruleForm.date" style="width: 100%;" value-format ="yyyy-MM-dd"></el-date-picker>
             </el-form-item>
           </el-col>
           <el-col class="line" :span="2">——</el-col>
           <el-col :span="11">
-            <el-form-item prop="date2">
-              <el-time-picker placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;"></el-time-picker>
+            <el-form-item prop="time">
+              <el-time-picker placeholder="选择时间" v-model="ruleForm.time" style="width: 100%;"></el-time-picker>
             </el-form-item>
           </el-col>
         </el-form-item>
@@ -103,6 +106,7 @@
     },*/
     data() {
       return {
+        visual:'false',
         tableData: [],
         tags: [
           { name: '标签一', type: '' },
@@ -118,8 +122,8 @@
           id:'',
           name: '',
           region: '',
-          date1: '',
-          date2: '',
+          date: '',
+          time: '',
           delivery: false,
           type: [],
           resource: '',
@@ -135,10 +139,10 @@
           region: [
             { required: true, message: '请选择使用项目', trigger: 'change' }
           ],
-          date1: [
+          date: [
             {  required: true, message: '请选择日期', trigger: 'change' }
           ],
-          date2: [
+          time: [
             {  required: true, message: '请选择时间', trigger: 'change' }
           ],
           type: [
@@ -153,52 +157,58 @@
     },
     methods: {
       changeInfo(form){
-        this.$api.table.updateTable(this.ruleForm.id,{
-          "name": this.ruleForm.name,
-          "region": this.ruleForm.region,
-          "date1": this.ruleForm.date1,
-          "date2": this.ruleForm.date2,
-          "delivery": this.ruleForm.delivery,
-          "type": this.ruleForm.type,
-          "resource": this.ruleForm.resource,
-          "desc": this.ruleForm.desc}).then(res=>{
-          console.log("修改成功！")
+        console.log("选中id是："+form.id)
+        this.$api.table.updateTable(form.id,{
+          "id":form.id,
+          "name": form.name,
+          "region": form.region,
+          "date": form.date,
+          "time": form.time,
+          "delivery": form.delivery,
+          "type": form.type,
+          "resource": form.resource,
+          "desc": form.desc}).then(res=>{
+          this.reload()
           this.dialogFormVisible = false
         })
-        this.getTableData()
-        this.reload()
       },
-      handleEdit(index, row) {
-        console.log(index);
+
+      handleEdit(row) {
+        console.log(row)
         this.dialogFormVisible = true  //弹出对话框表单
         this.ruleForm.id=row.id
         this.ruleForm.name=row.name
         this.ruleForm.type=row.type
         this.ruleForm.desc=row.desc
-        this.ruleForm.date1=row.date1
+        this.ruleForm.date=row.date
+        this.ruleForm.time=row.time
         this.ruleForm.delivery=row.delivery
         this.ruleForm.region=row.region
         this.ruleForm.resource=row.resource
-        this.ruleForm.date2=row.date2
       },
+
       handleDelete(index) {
         console.log(index);
         this.$api.table.deleteTable(index).then(res=>{
-          this.$message({message: '删除成功！', type: 'success'});//弹出成功提示框
-          this.reload()//刷新页面
+          //console.log(res.data)
+          if(res.data.code===200){
+            this.reload()//刷新页面
+            this.$message({message: '删除成功！', type: 'success'});//弹出成功提示框
+          }
         });
       },
 
       getTableData(){
-        axios.get('/getTableData').then(res=>{
-          this.tableData=res.data.list
+        this.$api.table.getAllTableData().then(res=>{
+          console.log(res.data)
+          this.tableData=res.data
+        }).catch(res=>{
+          console.log(res.error())
         })
-        // this.$api.table.getAllTableData().then(res=>{//获取数据
-        //   this.tableData=res.data
-        // })
       }
     },
     mounted() {
+      console.log("mounted")
       this.getTableData()
     }
   }

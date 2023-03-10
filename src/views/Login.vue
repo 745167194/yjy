@@ -42,6 +42,7 @@ import axios from "axios";
         exist:false
       }
     },
+
     methods:{
       submitForm(formName){
         this.$refs[formName].validate(async (valid) => {
@@ -55,32 +56,12 @@ import axios from "axios";
             });
           }
         })
-      },/*
-      getAdmin(){//用户登录验证,使用json-server
-        let adminList=[]
-        this.$api.account.getAllAdmin().then(res=>{
-          adminList=res.data
-          adminList.forEach(element=>{
-            if(element.account===this.form.account && element.password===this.form.password){
-              this.exist=true
-              sessionStorage.setItem('isLogin', true);//设置登录状态
-              this.$store.dispatch("asyncUpdateAdmin", {name: this.form.account});//传递store
-              this.$router.push({name: 'Layout', params: {name: this.form.account}});//传参{name:推到页面名,prarms:{传递参数名:参数}}
-            }
-          })
-          if(!this.exist){
-            this.$message({
-              message: '用户名或密码错误',
-              type: 'warning'
-            });
-          }
-        })
-      },*/
+      },
+
       getAdmin(){//用户登陆验证，使用mock
-        axios.get('/getAllAdminData').then(res=>{
-          console.log(res.data)
-          let adminList=res.data.list
-          console.log(adminList)
+        this.$api.account.getAllAdmin().then(res=>{
+          //console.log(res.data)
+          let adminList=res.data
           adminList.forEach(element=>{
             if(element.account===this.form.account && element.password===this.form.password){
               this.exist=true

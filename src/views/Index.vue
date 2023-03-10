@@ -9,7 +9,7 @@
               <i class="el-icon-setting icon" style="margin-right: 15px;font-size: 20px"></i>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>管理员中心</el-dropdown-item>
-                <el-dropdown-item @click.native="outlog">退出登录</el-dropdown-item>
+                <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
             <span>{{$store.getters.getAdmin.name}}</span>
@@ -18,10 +18,10 @@
 
         <el-main>
           <div class="div1">
-            <div class="smallcon" @click="saveState">
+            <div class="smallcon" @click="local">
               local
             </div>
-            <div class="smallcon" @click="camera">
+            <div class="smallcon" @click="chart">
               Chart
             </div>
             <div class="smallcon" @click="network">
@@ -57,16 +57,16 @@ export default {
   methods:{
     saveState(){
       //保存state,使得刷新后还能得到原来的state数据
-      console.log("network state:"+
-        JSON.stringify(this.$store.state.admin));
+      //console.log("network state:"+
+       // JSON.stringify(this.$store.state.admin));
       sessionStorage.setItem('isLogin', true);//设置登录状态
       sessionStorage.setItem('state',JSON.stringify(this.$store.state.admin));
       //sessionStorage只能传递字符串,所以将state转化为JSON类型的字符串来存储state
     },
-    outlog(){
-      console.log("退出登录");
+    logout(){
+      //console.log("退出登录");
       sessionStorage.setItem('isLogin',false);//设置登录状态
-      this.$router.push({name:'Login'});
+      this.$router.push('/logout');
     },
     network(){
       this.$router.push({name:'Network'});
@@ -80,7 +80,10 @@ export default {
     log(){
       this.$router.push({name:'LogIndex'});
     },
-    camera(){
+    local(){
+
+    },
+    chart(){
 
     },
     toHome(){

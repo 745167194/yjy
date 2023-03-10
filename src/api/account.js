@@ -3,14 +3,14 @@ import request from "../utils/request";
 export function getAllAdmin(){
   return request({
     method:'GET',
-    url:'/AdminData'
+    url:'/getAllAdmin'
   })
 }
 
 export function addAdmin(id,account,password){
   return request({
     method:'POST',
-    url:'/AdminData',
+    url:'/addAdmin',
     data: {
       "id":id,
       "account":account,
@@ -20,12 +20,16 @@ export function addAdmin(id,account,password){
 }
 
 export function deleteAdmin(arr) {
-  //console.log(arr)
-  arr.forEach(element => request.delete('/AdminData/' + element))
-  //request.delete('/AdminData/')
-  //return
-}
+  //arr.forEach(element => request.delete('/AdminData/' + element))
+  return request({
+    method:'DELETE',
+    url:'/deleteAdmin',
+    data:arr
+  })
 
+
+}
+/*
 export function exist(account,password){
   this.getAllAdmin().then(res=>{
     let adminList=res.data
@@ -36,12 +40,5 @@ export function exist(account,password){
       else return false
     })
   })
-
-  /*
-  adminList.forEach(element=>{
-    if(element.account===account && element.password===password){
-      return true
-    }
-    else return false
-  })*/
 }
+*/
