@@ -56,16 +56,6 @@ export default {
 
     myOption(){
       return {      //setOption进行绘图
-        title: {   //标题设置
-          left: 'center',
-          bottom: '10px',
-          text: "最近一周订单数量",//标题文本，支持使用 \n 换行。
-          textStyle: {
-            fontWeight: 'normal',
-            fontSize: 16,
-            color: '#000'
-          }
-        },
         tooltip: {  //提示框取默认值，鼠标悬停显示的内容
           trigger: 'axis',   //触发类型；轴触发，axis则鼠标hover到一条柱状图显示全部数据，item则鼠标hover到折线点显示相应数据
           axisPointer: {  //坐标轴指示器，坐标轴触发有效，
@@ -124,7 +114,7 @@ export default {
                 x2: 0,
                 y2: 1,
                 colorStops: [{
-                  offset: 0, color: 'rgb(240,128,128)' // 0% 处的颜色
+                  offset: 0, color: 'rgb(100,149,237)' // 0% 处的颜色
                 }, {
                   offset: 1, color: '#ffffff' // 100% 处的颜色
                 }],
@@ -132,9 +122,9 @@ export default {
               }
             },
             itemStyle: {
-              color: 'rgb(139,0,0)', //改变折线点的颜色
+              color: 'rgb(0,0,139)', //改变折线点的颜色
               lineStyle: {
-                color: 'rgb(139,0,0)' //改变折线颜色
+                color: 'rgb(0,0,139)' //改变折线颜色
               }
 
             },
@@ -157,7 +147,7 @@ export default {
                 x2: 0,
                 y2: 1,
                 colorStops: [{
-                  offset: 0, color: 'rgb(144,238,144)' // 0% 处的颜色
+                  offset: 0, color: 'rgb(244,164,96)' // 0% 处的颜色
                 }, {
                   offset: 1, color: '#ffffff' // 100% 处的颜色
                 }],
@@ -165,9 +155,9 @@ export default {
               }
             },
             itemStyle: {
-              color: 'rgb(0,128,0)', //改变折线点的颜色
+              color: 'rgb(255,140,0)', //改变折线点的颜色
               lineStyle: {
-                color: 'rgb(0,128,0)' //改变折线颜色
+                color: 'rgb(255,140,0)' //改变折线颜色
               }
             },
             data: this.opinionData1_2,

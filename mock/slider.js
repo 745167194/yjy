@@ -1,19 +1,18 @@
 const  Mock  =  require( "mockjs" )
 
 //初始化Slider
-const slider1=Mock.mock({
+let slider1=Mock.mock({
   "number|1-100": 100
 })
 
 //修改Slider
+
 function changeSlider(options){
   let num = options.body
-
-  console.log("changeslider",num)
-  sessionStorage.setItem('Slider1', num)
+  sessionStorage.setItem('Slider1',num)
+  //console.log("后台接收到了value值：",JSON.parse(sessionStorage.getItem('Slider1')).number)
   return {
     code:200,
-    data: sessionStorage.getItem('Slider1'),
     msg:"change success"
   }
 }
@@ -26,7 +25,11 @@ function getSlider() {
   }
   // 每次获取数据时，再从 localStorage 中拉取数据
   let Slider1 = JSON.parse(sessionStorage.getItem('Slider1'))
-  return Slider1
+  return {
+    code :200,
+    data:Slider1,
+    msg:"get number success"
+  }
 }
 
 

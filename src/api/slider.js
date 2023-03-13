@@ -5,7 +5,7 @@ export function changeSlider1(num){
     method:'POST',
     url:'/changeSlider',
     data:{
-      slider1:num
+      number:num
     }
   })
 }

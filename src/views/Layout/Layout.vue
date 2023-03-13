@@ -11,8 +11,8 @@
                 <span slot="title" style="font-size:17px;margin-left: 10px">导航一</span>
               </i>
             </template>
-            <el-menu-item index="1-1">
-              <span slot="title">空</span>
+            <el-menu-item index="">
+              <span slot="title">nothing</span>
             </el-menu-item>
             <el-menu-item index="/upload">
               <span slot="title">上传文件</span>

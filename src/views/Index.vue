@@ -19,10 +19,10 @@
         <el-main>
           <div class="div1">
             <div class="smallcon" @click="local">
-              local
+
             </div>
             <div class="smallcon" @click="chart">
-              Chart
+
             </div>
             <div class="smallcon" @click="network">
               Network
@@ -33,13 +33,13 @@
           </div>
           <div class="div2">
             <div class="smallcon">
-              storage
+
             </div>
             <div class="smallcon" @click="system">
               System
             </div>
             <div class="smallcon">
-              System info
+
             </div>
             <div class="smallcon" @click="log">
               Log

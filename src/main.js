@@ -32,7 +32,6 @@ process.env.MOCK  &&  require( '../mock' )
 //每次路由跳转之前执行 钩子函数，不在vue实例中，所以不能用mounted
 router.beforeEach((to,from,next)=>{
   let isLogin=sessionStorage.getItem('isLogin');//获取登录状态
-  console.log("islogin="+isLogin);
   //注销，清除登陆状态,跳转到登陆页面
   if(to.path == '/logout'){
     sessionStorage.clear();
@@ -42,14 +41,11 @@ router.beforeEach((to,from,next)=>{
   else if(to.path == '/login'){
     if(isLogin != null){
       next({path:'/main/'+store.getters.getAdmin.name});
-      console.log("2,,,,,"+isLogin);
     }
-    console.log("2");
   }
   //如果未登录，则进入任何页面都要跳到登录页面
   else if(isLogin == null){
     next({path:'/login'});
-    console.log("3");
   }
   next();//跳到下一个钩子函数
 })

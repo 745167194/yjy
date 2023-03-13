@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-slider v-model="value" show-input :format-tooltip="formatTooltip"></el-slider>
+    <el-slider v-if="showPage" v-model="value" show-input :format-tooltip="formatTooltip"></el-slider>
   </div>
 </template>
 
@@ -9,22 +9,23 @@ export default {
   name: "Alarm",
   data(){
     return{
-      value:50
+      value:0,
+      showPage:false
     }
   },
   methods :{
-    formatTooltip(val){
-      console.log('滑块值：'+val)
-      this.$api.slider.changeSlider1(val).then(res=>{
-        console.log("发送值：",res.data.data.slider)
+    formatTooltip(){//有一些问题
+      this.$api.slider.changeSlider1(this.value).then(res=>{
       })
-      return val
     }
   },
-  mounted() {
-    this.$api.slider.getSlider1().then(res=>{
-      console.log("return data:",res.data)
-      this.value=res.data.number
+
+  created() {
+    this.$nextTick(() => {
+      this.$api.slider.getSlider1().then(res=>{
+        this.value=res.data.data.number
+        this.showPage=true
+      })
     })
   }
 }

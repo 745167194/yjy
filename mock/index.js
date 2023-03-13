@@ -3,7 +3,7 @@ require('./adminmock')
 require('./devmock')
 require('./log')
 require('./slider')
-import DevAPI from './devmock'
+require('./network')
 
 // 在这里可以做一些通用的配置
 //导入Mock依赖

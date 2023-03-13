@@ -1,13 +1,15 @@
 <template>
   <ul class="ipAdress">
     <li v-for="(item,index) in ipAddress">
-      <input ref="ipInput" v-model="item.value" type="text" class="ipInputClass" @input="checkIpVal(item)" @keyup="turnIpPosition(item,index,$event)"/>
+      <input ref="ipInput"  v-model="item.value" type="text" class="ipInputClass" @input="checkIpVal(item)" @keyup="turnIpPosition(item,index,$event)"/>
       <div></div>
     </li>
   </ul>
 </template>
 
 <script>
+import {stringify} from "querystring";
+
 export default {
   props: {
     value: {
@@ -98,6 +100,21 @@ export default {
           self.$refs.ipInput[index + 1].focus();
         }
       }
+    },
+    initValue(str){
+      let ipStr=str.split(".")
+      this.ipAddress[0].value=ipStr[0]
+      this.ipAddress[1].value=ipStr[1]
+      this.ipAddress[2].value=ipStr[2]
+      this.ipAddress[3].value=ipStr[3]
+    },
+
+    getIp(){
+      let str=this.ipAddress[0].value+"."+
+        this.ipAddress[1].value+"."+
+        this.ipAddress[2].value+"."+
+        this.ipAddress[3].value
+      return str
     }
   }
 }
@@ -125,6 +142,7 @@ export default {
   height: 23px;
   text-align: center;
   background: transparent;
+  font-family: "微软雅黑";
 }
 .ipAdress li div{
   position: absolute;
