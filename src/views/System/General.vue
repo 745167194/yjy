@@ -8,14 +8,14 @@
           </el-form-item>
           <el-form-item label="Video Standard" prop="VS">
             <el-select v-model="Form.VS">
-              <el-option label="PAL" value="1" ></el-option>
-              <el-option label="NTSC" value="2" ></el-option>
+              <el-option label="PAL" value="PAL" ></el-option>
+              <el-option label="NTSC" value="NTSC" ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">Apply</el-button>
-            <el-button  style="margin: 20px" @click="Refresh('ruleForm')">Refresh</el-button>
-            <el-button  style="margin: 20px" @click="Default('ruleForm')">Default</el-button>
+            <el-button type="primary" @click="submitForm()">Apply</el-button>
+            <el-button  style="margin: 20px" @click="Refresh('Form')">Refresh</el-button>
+            <el-button  style="margin: 20px" @click="Default('Form')">Default</el-button>
           </el-form-item>
         </el-form>
 
@@ -42,7 +42,7 @@ export default {
       activeName: 'Basic',
       Form:{
         Dev:'',
-        VS:'1'
+        VS:'PAL'
       },
       time: '',
       date: '',
@@ -52,8 +52,11 @@ export default {
     handleClick(tab, event) {
       console.log(tab, event);
     },
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+    submitForm() {
+      let data=this.Form
+      this.$api.CallRpc('BasicSetting','BasicSetting',data)
+/*
+      this.$refs[form].validate((valid) => {
         if (valid) {
           this.$message({message: '创建成功！', type: 'success'});//弹出成功提示框
         } else {
@@ -61,10 +64,10 @@ export default {
           this.$message.error("创建失败");//弹出成功提示框
           return false;
         }
-      });
+      });*/
     },
-    Refresh(form){
-
+    Refresh(Form){
+      this.$refs[Form].resetFields();
     },
     Default(form){
 

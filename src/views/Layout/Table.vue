@@ -53,7 +53,7 @@
           <el-col class="line" :span="2">——</el-col>
           <el-col :span="11">
             <el-form-item prop="time">
-              <el-time-picker placeholder="选择时间" v-model="ruleForm.time" style="width: 100%;"></el-time-picker>
+              <el-time-picker placeholder="选择时间" v-model="ruleForm.time" style="width: 100%;" value-format ="HH:mm:ss"></el-time-picker>
             </el-form-item>
           </el-col>
         </el-form-item>
@@ -80,7 +80,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false,changeInfo(ruleForm)">确 定</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false,changeInfo()">确 定</el-button>
       </div>
     </el-dialog>
 
@@ -156,59 +156,37 @@
       }
     },
     methods: {
-      changeInfo(form){
-        console.log("选中id是："+form.id)
-        this.$api.table.updateTable(form.id,{
-          "id":form.id,
-          "name": form.name,
-          "region": form.region,
-          "date": form.date,
-          "time": form.time,
-          "delivery": form.delivery,
-          "type": form.type,
-          "resource": form.resource,
-          "desc": form.desc}).then(res=>{
-          this.reload()
-          this.dialogFormVisible = false
-        })
+      changeInfo(){
+        this.$api.CallRpc('changeDevInfo','changeDevInfo',this.ruleForm)//参数中含id
+          .then(res=>{
+            this.reload()
+            this.dialogFormVisible = false
+          })
       },
 
       handleEdit(row) {
-        console.log(row)
         this.dialogFormVisible = true  //弹出对话框表单
-        this.ruleForm.id=row.id
-        this.ruleForm.name=row.name
-        this.ruleForm.type=row.type
-        this.ruleForm.desc=row.desc
-        this.ruleForm.date=row.date
-        this.ruleForm.time=row.time
-        this.ruleForm.delivery=row.delivery
-        this.ruleForm.region=row.region
-        this.ruleForm.resource=row.resource
+        this.ruleForm=row
       },
 
       handleDelete(index) {
         console.log(index);
-        this.$api.table.deleteTable(index).then(res=>{
-          //console.log(res.data)
-          if(res.data.code===200){
-            this.reload()//刷新页面
-            this.$message({message: '删除成功！', type: 'success'});//弹出成功提示框
-          }
-        });
+        this.$api.CallRpc('deleteDev','deleteDev',{"index:":index})
+          .then(res=>{
+            this.reload()
+          })
       },
 
       getTableData(){
-        this.$api.table.getAllTableData().then(res=>{
-          console.log(res.data)
-          this.tableData=res.data
+        this.$api.CallRpc('getDev','getDev').then(res=>{
+          //console.log(res.data)
+          //this.tableData=res.data
         }).catch(res=>{
           console.log(res.error())
         })
       }
     },
     mounted() {
-      console.log("mounted")
       this.getTableData()
     }
   }

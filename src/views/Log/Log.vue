@@ -64,15 +64,11 @@ export default {
   },
   methods:{
     search(){
-      this.$api.log.search(this.Form.time,this.Form.type).then(res=>{
-        this.LogData=res.data;
-        console.log("search data:",res.data);
-      })
+      let data=this.Form
+      this.$api.CallRpc('searchLog','searchLog',data)
     },
     getLogData(){
-      this.$api.log.getAllLog().then(res=>{
-        this.LogData=res.data;
-      })
+      this.$api.CallRpc('getLog','getLog')
     }
 
   },

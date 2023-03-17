@@ -1,7 +1,7 @@
 <template>
   <div> <!-- ref=id  :rules:表单验证  :model = v-bind 实现双向数据绑定 -->
     <el-form ref="form" :rules="rules" :model="form" class="login-box">
-      <h3 class="login-title">欢迎登陆</h3>
+      <h3 class="login-title">欢迎登录</h3>
       <el-form-item label="账号:" prop="account"><!--将需要验证的属性使用prop传递-->
         <el-input type="text" v-model="form.account" placeholder="请输入用户名"></el-input>
       </el-form-item>
@@ -59,6 +59,8 @@ import axios from "axios";
       },
 
       getAdmin(){//用户登陆验证，使用mock
+
+        //this.$api.account.CallRpc('getAdmin','getAdmin')
         this.$api.account.getAllAdmin().then(res=>{
           //console.log(res.data)
           let adminList=res.data
@@ -67,7 +69,7 @@ import axios from "axios";
               this.exist=true
               sessionStorage.setItem('isLogin', true);//设置登录状态
               this.$store.dispatch("asyncUpdateAdmin", {name: this.form.account});//传递store
-              this.$router.push({name: 'Layout', params: {name: this.form.account}});//传参{name:推到页面名,prarms:{传递参数名:参数}}
+              this.$router.push({name: 'Index', params: {name: this.form.account}});//传参{name:推到页面名,prarms:{传递参数名:参数}}
             }
           })
           if(!this.exist){

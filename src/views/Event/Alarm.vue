@@ -9,21 +9,20 @@ export default {
   name: "Alarm",
   data(){
     return{
-      value:0,
+      value:50,
       showPage:false
     }
   },
   methods :{
     formatTooltip(){//有一些问题
-      this.$api.slider.changeSlider1(this.value).then(res=>{
-      })
+      this.$api.CallRpc('changeSlider','changeSlider', {value:this.value})
     }
   },
 
   created() {
     this.$nextTick(() => {
-      this.$api.slider.getSlider1().then(res=>{
-        this.value=res.data.data.number
+      this.$api.CallRpc('applyTCPIP','applyTCPIP')
+        .then(res=>{
         this.showPage=true
       })
     })

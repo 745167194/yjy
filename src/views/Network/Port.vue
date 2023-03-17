@@ -48,9 +48,9 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">Apply</el-button>
-        <el-button  style="margin: 20px" @click="Refresh('ruleForm')">Refresh</el-button>
-        <el-button  style="margin: 20px" @click="Default('ruleForm')">Default</el-button>
+        <el-button type="primary" @click="submitForm()">Apply</el-button>
+        <el-button  style="margin: 20px" @click="Refresh()">Refresh</el-button>
+        <el-button  style="margin: 20px" @click="Default()">Default</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -92,7 +92,7 @@ export default {
             message: 'Operation failed. Port is already occupied.',trigger: 'change' }
         ],
         HTTPSPort: [
-          { required: true, type:"443" ,min: 443, max: 443,
+          { required: true, type:"number" ,min: 443, max: 443,
             message: 'Operation failed. Port is already occupied.',trigger: 'change' }
         ],
       }
@@ -103,22 +103,22 @@ export default {
     macInput
   },
   methods:{
-    submitForm(formName) {
-      //console.log("fromname:"+JSON.stringify(this.Form));
-      this.$refs[formName].validate((valid) => {
+    submitForm() {
+      this.$refs.Form.validate((valid) => {
         if (valid) {
+          let data=this.Form
+          this.$api.CallRpc('applyPort','applyPort',data)
           this.$message({message: '创建成功！', type: 'success'});//弹出成功提示框
         } else {
-          console.log('error submit!!');
           this.$message.error("创建失败");//弹出成功提示框
           return false;
         }
       });
     },
-    Refresh(form){
+    Refresh(){
 
     },
-    Default(form){
+    Default(){
 
     },
     getIp(data){

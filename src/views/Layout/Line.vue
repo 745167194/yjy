@@ -15,8 +15,8 @@ export default {
   data() {
     return {
       charts: '',
-      opinionData1:[],//数据
-      opinionData2:[],
+      opinionData1:[150,150,100,100,500,425,999],//数据
+      opinionData2:[104,104,69,71,348,489,666],
     }
   },
   methods: {
@@ -153,8 +153,8 @@ export default {
   },
   //调用
   mounted() {
-    //this.$api.chart.getLineData()
-      axios.get('/LineData').then(res=>{
+    this.$api.CallRpc('getLineData','getLineData')
+     .then(res=>{/*
       console.log(res.data.optionData1);
       this.opinionData1=res.data.optionData1 //从json中获得数据1  注意opinion与option不同
       this.opinionData2=res.data.optionData2 //从json中获得数据2
@@ -164,7 +164,12 @@ export default {
       this.$nextTick(function() {//绘图
         console.log("draw")
         this.drawLine('main')//main是容器id
-      })
+      })*/
+    })
+
+    this.$nextTick(function() {//绘图
+      console.log("draw")
+      this.drawLine('main')//main是容器id
     })
   }
 

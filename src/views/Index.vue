@@ -1,10 +1,13 @@
 <template>
-  <div  >
+  <div  style="height: 100%">
       <!--主页面-->
       <el-container>
-        <el-header style="font-size: 12px;">
+        <el-header>
+          <div style="float: left;height:100%" >
+            <img class="logo" src="../assets/R-C.png" alt="logo">
+          </div>
           <div style="float:right ">
-            <i class="el-icon-s-home icon" style="font-size: 20px;margin-right: 5px" @click="toHome"></i>
+
             <el-dropdown >
               <i class="el-icon-setting icon" style="margin-right: 15px;font-size: 20px"></i>
               <el-dropdown-menu slot="dropdown">
@@ -12,17 +15,18 @@
                 <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
-            <span>{{$store.getters.getAdmin.name}}</span>
+            <span style="color: #333333">{{$store.getters.getAdmin.name}}</span>
           </div>
         </el-header>
 
         <el-main>
+          <div class="indexButton">
           <div class="div1">
             <div class="smallcon" @click="local">
-
+1
             </div>
             <div class="smallcon" @click="chart">
-
+chart
             </div>
             <div class="smallcon" @click="network">
               Network
@@ -33,17 +37,18 @@
           </div>
           <div class="div2">
             <div class="smallcon">
-
+5
             </div>
             <div class="smallcon" @click="system">
               System
             </div>
             <div class="smallcon">
-
+7
             </div>
             <div class="smallcon" @click="log">
               Log
             </div>
+          </div>
           </div>
         </el-main>
       </el-container>
@@ -84,11 +89,8 @@ export default {
 
     },
     chart(){
-
-    },
-    toHome(){
       this.$router.push({name: 'Layout', params: {name: this.$store.getters.getAdmin.name}});
-    }
+    },
   }
 }
 </script>
@@ -97,27 +99,54 @@ export default {
 .smallcon{
   width: 300px ;
   height: 300px;
-  margin: 10px ;
-  border:1px solid #DCDFE6;
-  box-shadow:0 0 30px #DCDFE6;
-  border-radius:5px;
+  text-align: center;
+  //margin: 10px ;
+  //border:1px solid #DCDFE6;
+  //box-shadow:0 0 30px #DCDFE6;
+  //border-radius:5px;
 }
 .smallcon:hover{
-  transform: scale(1.05);//四周变大
+  //transform: scale(1.05);//四周变大
+  background-color: rgb(176,196,222,0.2);
+
 }
 .div1{
+  justify-content: center;
   display: flex;
-  margin-top:250px;
   height:300px;
-  margin-left:300px;
 }
 .div2{
   display: flex;
-  margin-top:20px;
   height:300px;
-  margin-left:300px;
+  bottom: 0;
+  justify-content: center;
 }
 .icon:hover{
-  color:#828282;
+  color:#505050;
+}
+.logo{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin-left: 20px;
+}
+.indexButton{
+  position: absolute;
+  height: 600px;
+  width: 1200px;
+  bottom: 10px;
+  left: 50%;//先像左移动一半的距离
+  margin-left: -600px; //减去宽度的一半，实现元素绝对定位下的居中
+  border:1px solid #DCDFE6;
+  box-shadow:0 0 30px #DCDFE6;
+  border-radius:5px;
+  background-color: white;
+}
+.el-main{
+  //background-image: linear-gradient(to bottom,#B3C0D1,#DCDFE6);
+}
+.el-header{
+  font-size: 12px;
+  background-color: #B3C0D1;
 }
 </style>

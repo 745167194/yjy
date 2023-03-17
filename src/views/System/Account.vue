@@ -70,15 +70,11 @@ export default {
     };
   },
   methods: {
-    handleClick(tab, event) {
-      //console.log(tab, event);
-    },
+    handleClick(tab, event) {},
     Add(){
-     // console.log("add admin")
       if(this.AddForm.password===this.AddForm.acPassword){
-        this.$api.account.addAdmin(this.AddForm.id,this.AddForm.account,this.AddForm.password).then(res=>{
-          this.AdminData=res.data.data
-        })
+        let data = {"id":this.AddForm.id, "account":this.AddForm.account,"password":this.AddForm.password,};
+        this.$api.CallRpc('addAdmin','addAdmin',data)
         this.dialogFormVisible = false
       }
       else {
@@ -96,8 +92,9 @@ export default {
         callback: action => {
           if (action === 'confirm') {
             //批量删除
-            this.$api.account.deleteAdmin(arr).then(res=>{
-              this.AdminData=res.data.data
+            let data = {"idArray":arr};
+            this.$api.CallRpc('deleteAdmin','deleteAdmin',data).then(res=>{
+              //判断删除是否成功，弹出成功或失败
               this.$message({
                 message: '删除成功！',
                 type: 'success'
@@ -115,7 +112,6 @@ export default {
         });
       } else {
         this.$refs.multipleTable.clearSelection();
-        //this.butDisabled=true;
       }
 
     },
@@ -130,18 +126,13 @@ export default {
 
     },
     getAdmin(){
-      this.$api.account.getAllAdmin().then(res=>{
-        this.AdminData=res.data
-        //console.log(this.AdminData)
-      })
+      this.$api.CallRpc('getAdmin','getAdmin')
     }
   },
   mounted() {
     if(this.activeName==='User'){
-      //console.log("User")
       this.getAdmin()
     }
-
   }
 }
 </script>

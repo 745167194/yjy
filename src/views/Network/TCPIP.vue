@@ -48,9 +48,9 @@
 
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm('')">Apply</el-button>
-        <el-button  style="margin: 20px" @click="Refresh('')">Refresh</el-button>
-        <el-button  style="margin: 20px" @click="Default('')">Default</el-button>
+        <el-button type="primary" @click="submitForm()">Apply</el-button>
+
+        <el-button  style="margin: 20px" @click="Default()">Default</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -94,7 +94,9 @@ export default {
   },
   methods:{
     submitForm() {
-      let data={
+      let data=this.Form
+        /*
+        {
         host_name: this.Form.host_name,
         ARP_Ping: this.Form.ARP_Ping,
         NIC: this.Form.NIC,
@@ -106,11 +108,8 @@ export default {
         DefaultGateway:this.$refs.DefaultGateway.getIp(),
         PreferredDNS:this.$refs.PreferredDNS.getIp(),
         AlternateDNS:this.$refs.AlternateDNS.getIp()
-      }
-      this.$api.network.TcpIp(data).then(res=>{
-        //console.log(res.data)
-      })
-
+      }*/
+      this.$api.CallRpc('applyTCPIP','applyTCPIP',data)
     },
     Refresh(){
       this.$refs.Form.resetFields();

@@ -65,14 +65,8 @@ export default {
       return sums;
     }
   },
-  created() {
-    request({
-      method:'GET',
-      url:'/TabData1'
-    }).then(res=>{
-      console.log(res);
-      this.tableData=res.data
-    })
+  mounted() {
+    this.$api.CallRpc('getSomething','getSomething')
   }
 }
 </script>

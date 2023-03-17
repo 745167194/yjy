@@ -28,6 +28,12 @@
       <el-form-item label="Online Log Backup" prop="LogBackup" >
         <el-switch v-model="Form.LogBackup"></el-switch>
       </el-form-item>
+
+      <el-form-item>
+        <el-button type="primary" @click="submitForm()">Apply</el-button>
+        <el-button  style="margin: 20px" @click="Refresh()">Refresh</el-button>
+        <el-button  style="margin: 20px" @click="Default()">Default</el-button>
+      </el-form-item>
     </el-form>
   </div>
 </template>
@@ -49,8 +55,20 @@ export default {
         LogBackup:false
       }
     }
-  }
+  },
+  methods:{
+    submitForm() {
+      let data=this.Form
+      this.$api.CallRpc('basicService','basicService',data)
+    },
+    Refresh(){
+      this.$refs.Form.resetFields();
+    },
+    Default(){
 
+    },
+
+  }
 }
 </script>
 

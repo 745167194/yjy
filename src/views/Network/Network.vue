@@ -1,9 +1,11 @@
 <template>
   <div style="height: 100%;width: 100%">
     <el-container>
-      <el-header style="font-size: 12px;">
+      <el-header>
+        <div style="float: left;height:100%" >
+          <img class="logo" src="../../assets/R-C.png" alt="logo">
+        </div>
         <div style="float:right ">
-          <i class="el-icon-s-grid icon" style="font-size: 20px;margin-right: 5px" @click="toIndex"></i>
           <i class="el-icon-s-home icon" style="font-size: 20px;margin-right: 5px" @click="toHome"></i>
           <el-dropdown >
             <i class="el-icon-setting icon" style="margin-right: 15px;font-size: 20px"></i>
@@ -12,7 +14,7 @@
               <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span>{{$store.getters.getAdmin.name}}</span>
+          <span style="color: #333333">{{$store.getters.getAdmin.name}}</span>
         </div>
       </el-header>
 
@@ -62,10 +64,7 @@ export default {
       console.log(key, keyPath);
     },
     toHome(){
-      this.$router.push({name: 'Layout', params: {name: this.$store.getters.getAdmin.name}});
-    },
-    toIndex(){
-      this.$router.push({name:'Index'});
+      this.$router.push({name: 'Index', params: {name: this.$store.getters.getAdmin.name}});
     },
   }
 }
@@ -74,8 +73,8 @@ export default {
 <style lang="scss" >
 .el-header {
   background-color: #B3C0D1;
-  color: #333;
   line-height: 60px;
+  font-size: 12px;
 }
 .el-container {
   height:100%;
@@ -84,8 +83,16 @@ export default {
   width: 240px;
   height: 100%;
 }
+.icon{
+  color:#333333;
+}
 .icon:hover{
-  color:#828282;
+  color:#505050;
+}
+.logo{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 </style>

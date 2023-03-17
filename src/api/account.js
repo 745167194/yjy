@@ -1,4 +1,6 @@
 import request from "../utils/request";
+import requestRpc from "../utils/requestRpc";
+
 
 export function getAllAdmin(){
   return request({
@@ -6,7 +8,7 @@ export function getAllAdmin(){
     url:'/getAllAdmin'
   })
 }
-
+/*
 export function addAdmin(id,account,password){
   return request({
     method:'POST',
@@ -42,3 +44,5 @@ export function exist(account,password){
   })
 }
 */
+
+

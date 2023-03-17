@@ -96,18 +96,9 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      console.log("fromname:"+JSON.stringify(this.ruleForm));
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$api.table.addTable({
-            "name": this.ruleForm.name,
-            "region": this.ruleForm.region,
-            "date": this.ruleForm.date,
-            "time": this.ruleForm.time,
-            "delivery": false,
-            "type": this.ruleForm.type,
-            "resource": this.ruleForm.resource,
-            "desc": this.ruleForm.desc})//参数，新增不需要id
+          this.$api.CallRpc('addDev','addDev',this.ruleForm)
           .then(res=>{
             console.log(res.data)
             this.$message({message: '创建成功！', type: 'success'});//弹出成功提示框

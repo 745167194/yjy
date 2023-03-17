@@ -15,6 +15,7 @@ import VueClipboard from "vue-clipboard2";
 import api from './api'
 import elementResizeDetectorMaker from "element-resize-detector"
 import 'default-passive-events'
+import '../fetchmock/index'
 
 Vue.prototype.$erd = elementResizeDetectorMaker();
 Vue.use(ElementUI);//声明使用element
@@ -68,7 +69,7 @@ new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App)//element初始化
+  render: h => h(App),//element初始化
 })
 
 
