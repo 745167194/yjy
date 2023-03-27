@@ -22,7 +22,7 @@
       <!--主页面-->
       <el-container>
         <!--边栏导航-->
-        <el-menu router  :default-active="this.$route.path" :isCollapse="isCollapse" class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
+        <el-menu router :default-active=this.$route.path :isCollapse="isCollapse" class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
           <el-menu-item  index="/TCPIP">
             <span slot="title"><i class="el-icon-s-home"></i>TCP/IP</span>
           </el-menu-item>

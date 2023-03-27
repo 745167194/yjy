@@ -23,9 +23,12 @@
       <el-container>
         <!--边栏导航-->
         <el-menu router :default-active=this.$route.path :isCollapse="isCollapse" class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
-            <el-menu-item  index="/alarm">
-              <span slot="title"><i class="el-icon-s-home"></i>Alarm</span>
-            </el-menu-item>
+          <el-menu-item  index="/chartline">
+            <span slot="title"><i class="el-icon-s-home"></i>Line</span>
+          </el-menu-item>
+          <el-menu-item  index="/chartbar">
+            <span slot="title"><i class="el-icon-s-home"></i>Bar</span>
+          </el-menu-item>
         </el-menu>
 
         <el-main>
@@ -39,7 +42,7 @@
 
 <script>
 export default {
-  name: 'EventIndex',
+  name: 'ChartIndex',
   data(){
     return {
       isCollapse: true,//true：菜单栏收缩；false：菜单栏展开
@@ -60,20 +63,13 @@ export default {
     toHome(){
       this.$router.push({name: 'Index', params: {name: this.$store.getters.getAdmin.name}});
     },
-    mounted(){
-      console.log(this.$route.path)
-    }
-    /*
-    toIndex(){
-      this.$router.push({name:'Index'});
-    },*/
   }
 }
 </script>
 
 <style lang="scss" >
 .el-header {
-  color: #B3C0D1;
+  background-color: #B3C0D1;
   line-height: 60px;
   font-size: 12px;
 }
@@ -94,7 +90,6 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  margin-left: 20px;
 }
 
 </style>

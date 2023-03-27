@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-slider v-if="showPage" v-model="value" show-input :format-tooltip="formatTooltip"></el-slider>
+    alarm
   </div>
 </template>
 
@@ -14,7 +15,7 @@ export default {
     }
   },
   methods :{
-    formatTooltip(){//有一些问题
+    formatTooltip(){
       this.$api.CallRpc('changeSlider','changeSlider', {value:this.value})
     }
   },

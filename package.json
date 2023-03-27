@@ -24,6 +24,7 @@
     "utils": "^0.3.1",
     "vue": "^2.5.2",
     "vue-clipboard2": "^0.3.3",
+    "vue-native-websocket": "^2.0.15",
     "vuex": "^3.6.2"
   },
   "devDependencies": {

@@ -72,7 +72,6 @@
         <el-header style="font-size: 12px;">
           <div style="float: left;font-size: 20px;" class="toggle-button"><i class="el-icon-s-fold icon" @click="toggleCollapse"></i></div>
           <div style="float:right ">
-            <i class="el-icon-s-grid icon" style="font-size: 20px;margin-right: 5px" @click="toIndex"></i>
             <i class="el-icon-s-home icon" style="font-size: 20px;margin-right: 5px" @click="toHome"></i>
           <el-dropdown >
             <i class="el-icon-setting icon" style="margin-right: 15px;font-size: 20px"></i>
@@ -127,11 +126,8 @@
         this.isCollapse = !this.isCollapse;
         console.log("collapse?"+this.isCollapse)
       },
-      toIndex(){
-        this.$router.push({name:'Index'});
-      },
       toHome(){
-        this.$router.push({name: 'Layout', params: {name: this.$store.getters.getAdmin.name}});
+        this.$router.push({name:'Index'});
       }
     }
   }

@@ -22,8 +22,8 @@
         <el-main>
           <div class="indexButton">
           <div class="div1">
-            <div class="smallcon" @click="local">
-1
+            <div class="smallcon" @click="layout">
+layout
             </div>
             <div class="smallcon" @click="chart">
 chart
@@ -85,11 +85,11 @@ export default {
     log(){
       this.$router.push({name:'LogIndex'});
     },
-    local(){
-
+    layout(){
+      this.$router.push({name: 'Layout', params: {name: this.$store.getters.getAdmin.name}});
     },
     chart(){
-      this.$router.push({name: 'Layout', params: {name: this.$store.getters.getAdmin.name}});
+      this.$router.push({name: 'ChartIndex'});
     },
   }
 }

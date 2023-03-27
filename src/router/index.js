@@ -29,9 +29,10 @@ import Log from "../views/Log/Log.vue";
 import RemoteLog from "../views/Log/Remote Log.vue";
 import EventIndex from "../views/Event/index.vue"
 import Alarm from "../views/Event/Alarm.vue"
+import ChartIndex from "../views/Chart/index.vue"
+import ChartLine from "../views/Chart/Line.vue"
+import ChartBar from "../views/Chart/Bar.vue"
 
-
-//import { component } from 'vue/types/umd';
 
 Vue.use(Router);
 
@@ -50,6 +51,7 @@ export default new Router({
       name:'Index',
       component:indexVue
     },
+    /*
   {
     //首页
     path:'/layout/:name',
@@ -118,11 +120,13 @@ export default new Router({
         component:AxiosTest//注意是component，不加s
       },
     ],
-  },
+  },*/
     {//network
       path:'/network',
       name:'Network',
       component:Network,
+      alwaysShow:false,
+      redirect:'/TCPIP',
       children:[
         {
           path: '/basicService',
@@ -145,6 +149,7 @@ export default new Router({
       path:'/system',
       name:'System',
       component:System,
+      redirect:'/general',
       children:[
         {
           path:'/general',
@@ -162,6 +167,7 @@ export default new Router({
       path:'/logindex',
       name:'LogIndex',
       component:LogIndex,
+      redirect:'/log',
       children:[
         {
           path:'/log',
@@ -179,6 +185,7 @@ export default new Router({
       path:'/eventindex',
       name:'EventIndex',
       component:EventIndex,
+      redirect:'/alarm',
       children:[
         {
           path:'/alarm',
@@ -186,7 +193,24 @@ export default new Router({
           component: Alarm
         }
       ]
-
+    },
+    {//图表
+      path:'/chartindex',
+      name:'ChartIndex',
+      component:ChartIndex,
+      //redirect:'/chartline',
+      children:[
+        {
+          path:'/chartline',
+          name:'ChartLine',
+          component:ChartLine
+        },
+        {
+          path:'/chartbar',
+          name:'ChartBar',
+          component: ChartBar,
+        }
+      ]
     },
   {
     path:'*', //404   通配符*

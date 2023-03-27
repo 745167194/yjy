@@ -28,7 +28,7 @@
       backtohome(adname){
         console.log("notfound state:"+
           JSON.stringify(this.$store.state.admin));
-        this.$router.push({name:'Layout',params:{name:adname}});
+        this.$router.push({name:'Index',params:{name:adname}});
       }
     },
     computed: {

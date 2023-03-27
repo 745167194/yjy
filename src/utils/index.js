@@ -1,4 +1,4 @@
-export function debounce(func, wait, immediate) {
+/*export function debounce(func, wait, immediate) {
   let timeout, args, context, timestamp, result
 
   const later = function() {
@@ -31,4 +31,4 @@ export function debounce(func, wait, immediate) {
 
     return result
   }
-}
+}*/
