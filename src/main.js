@@ -18,6 +18,7 @@ import 'default-passive-events'
 import '../fetchmock/index'
 import websocket from 'vue-native-websocket';
 
+
 Vue.use(websocket, '', {
   connectManually: true, // 手动连接
   format: 'json', // json格式

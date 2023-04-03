@@ -16,10 +16,8 @@ export default {
       data3:[15,24,61,52,18,94,75,52,35,26,15,28,94,54,84]
     }
   },
-  mounted() {
-    this.$nextTick(function() {
+  mounted(){
       this.getCurve()
-    })
   },
   methods: {
     getOption() {
@@ -85,7 +83,7 @@ export default {
             symbolSize: function (val) {
               return val[2] * 40;
             },
-            data: data1
+            data: this.data1
           },
           {
             name: 'scatter2',
@@ -98,7 +96,7 @@ export default {
             symbolSize: function (val) {
               return val[2] * 40;
             },
-            data: data2
+            data: this.data2
           },
           {
             name: 'scatter3',
@@ -111,7 +109,7 @@ export default {
             symbolSize: function (val) {
               return val[2] * 40;
             },
-            data: data3
+            data: this.data3
           }
         ]
       };
@@ -120,9 +118,9 @@ export default {
     getCurve() {
       let myChart = echarts.init(document.getElementById('main'))
       let option =this.getOption
+      console.log("??????")
       myChart.setOption(option)
       console.log("6666666666")
-      window.onresize = myChart.resize;
     },
   }
 }

@@ -109,6 +109,7 @@ export default {
         PreferredDNS:this.$refs.PreferredDNS.getIp(),
         AlternateDNS:this.$refs.AlternateDNS.getIp()
       }*/
+      //console.log("mydata:",data)
       this.$api.CallRpc('applyTCPIP','applyTCPIP',data)
     },
     Refresh(){

@@ -22,7 +22,8 @@
       <!--主页面-->
       <el-container>
         <!--边栏导航-->
-        <el-menu router :default-active=this.$route.path :isCollapse="isCollapse" class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
+        <el-menu background-color="#283443" text-color="#fff" active-text-color="#20a0ff"
+          router :default-active=this.$route.path :isCollapse="isCollapse" class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
           <el-menu-item  index="/TCPIP">
             <span slot="title"><i class="el-icon-s-home"></i>TCP/IP</span>
           </el-menu-item>
@@ -72,9 +73,10 @@ export default {
 
 <style lang="scss" >
 .el-header {
-  background-color: #B3C0D1;
-  line-height: 60px;
+  background-color: white;
+  line-height: 70px;
   font-size: 12px;
+  box-shadow:0 0 20px #828282;
 }
 .el-container {
   height:100%;
@@ -84,10 +86,10 @@ export default {
   height: 100%;
 }
 .icon{
-  color:#333333;
+  color:#828282;
 }
 .icon:hover{
-  color:#505050;
+  color:#454545;
 }
 .logo{
   width: 100%;

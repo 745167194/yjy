@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%;width: 100%">
+  <div style="height: 100%;width: 100%;">
     <el-container>
       <el-header>
         <div style="float: left;height:100%" >
@@ -22,12 +22,10 @@
       <!--主页面-->
       <el-container>
         <!--边栏导航-->
-        <el-menu router :default-active=this.$route.path :isCollapse="isCollapse" class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
+        <el-menu background-color="#283443" text-color="#fff" active-text-color="#20a0ff"
+          router :default-active=this.$route.path :isCollapse="isCollapse" class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
           <el-menu-item  index="/chartline">
             <span slot="title"><i class="el-icon-s-home"></i>Line</span>
-          </el-menu-item>
-          <el-menu-item  index="/chartbar">
-            <span slot="title"><i class="el-icon-s-home"></i>Bar</span>
           </el-menu-item>
         </el-menu>
 
@@ -69,7 +67,7 @@ export default {
 
 <style lang="scss" >
 .el-header {
-  background-color: #B3C0D1;
+  background-color: white;
   line-height: 60px;
   font-size: 12px;
 }
@@ -81,10 +79,10 @@ export default {
   height: 100%;
 }
 .icon{
-  color:#333333;
+  color:#828282;
 }
 .icon:hover{
-  color:#505050;
+  color:#454545;
 }
 .logo{
   width: 100%;

@@ -1,5 +1,5 @@
 <template>
-  <div  style="height: 100%">
+  <div  style="height: 100%;background-color: #283443">
       <!--主页面-->
       <el-container>
         <el-header>
@@ -23,7 +23,7 @@
           <div class="indexButton">
           <div class="div1">
             <div class="smallcon" @click="layout">
-layout
+1
             </div>
             <div class="smallcon" @click="chart">
 chart
@@ -86,7 +86,7 @@ export default {
       this.$router.push({name:'LogIndex'});
     },
     layout(){
-      this.$router.push({name: 'Layout', params: {name: this.$store.getters.getAdmin.name}});
+      //this.$router.push({name: 'Layout', params: {name: this.$store.getters.getAdmin.name}});
     },
     chart(){
       this.$router.push({name: 'ChartIndex'});
@@ -96,28 +96,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .smallcon{
   width: 300px ;
   height: 300px;
   text-align: center;
-  //margin: 10px ;
+  margin: 10px ;
   //border:1px solid #DCDFE6;
   //box-shadow:0 0 30px #DCDFE6;
-  //border-radius:5px;
+  border-radius:10px;
+
 }
 .smallcon:hover{
   //transform: scale(1.05);//四周变大
-  background-color: rgb(176,196,222,0.2);
+  background-color: #F0F8FF;
+  color: #20a0ff;
 
 }
 .div1{
   justify-content: center;
   display: flex;
-  height:300px;
+  height:320px;
+  border-radius:10px;
 }
 .div2{
+  border-radius:10px;
   display: flex;
-  height:300px;
+  height:320px;
   bottom: 0;
   justify-content: center;
 }
@@ -128,25 +133,22 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  margin-left: 20px;
+
 }
 .indexButton{
+  background-color: white;
   position: absolute;
-  height: 600px;
+  height: 640px;
   width: 1200px;
   bottom: 10px;
   left: 50%;//先像左移动一半的距离
   margin-left: -600px; //减去宽度的一半，实现元素绝对定位下的居中
-  border:1px solid #DCDFE6;
-  box-shadow:0 0 30px #DCDFE6;
-  border-radius:5px;
-  background-color: white;
-}
-.el-main{
-  //background-image: linear-gradient(to bottom,#B3C0D1,#DCDFE6);
+  box-shadow:0 0 30px black;
+  border-radius:10px;
 }
 .el-header{
   font-size: 12px;
-  background-color: #B3C0D1;
+  background-color: white;
+  box-shadow:0 0 30px black;
 }
 </style>

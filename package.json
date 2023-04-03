@@ -19,6 +19,7 @@
     "element-ui": "^2.15.13",
     "express": "^4.18.2",
     "fetch-mock": "^9.11.0",
+    "jsonrpc": "^0.1.1",
     "jsonrpc-lite": "^2.2.0",
     "path": "^0.12.7",
     "utils": "^0.3.1",

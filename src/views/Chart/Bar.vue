@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #333333;height: 100%">
+  <div style="height: 100%">
     <Curve ref="Curve"></Curve>
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {
     }
   },
   mounted() {
-    //this.initWebSocket();
+    this.initWebSocket();
   },
   sockets: {
     // 连接成功
@@ -47,11 +47,11 @@ export default {
   },
   destroyed() {
     // 销毁websocket
-    //this.$disconnect();
+    this.$disconnect();
   },
   methods:{
     initWebSocket(){
-      this.$connect('//localhost:3000')
+      this.$connect('//localhost:3000/RPC')
     },
     getFood(data){
       this.food=data.food||"";
