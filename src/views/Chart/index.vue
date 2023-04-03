@@ -70,6 +70,7 @@ export default {
   background-color: white;
   line-height: 60px;
   font-size: 12px;
+  box-shadow:0 0 20px #828282;
 }
 .el-container {
   height:100%;
