@@ -37,7 +37,7 @@ Vue.prototype.$api = api;
 
 
 Vue.config.productionTip = false
-process.env.MOCK  &&  require( '../mock' )
+//process.env.MOCK  &&  require( '../mock' )
 
 //每次路由跳转之前执行 钩子函数，不在vue实例中，所以不能用mounted
 router.beforeEach((to,from,next)=>{

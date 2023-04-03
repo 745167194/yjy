@@ -6,9 +6,6 @@
 
 <script>
 
-import request from "./utils/request";
-import axios from "axios";
-
 export default {//前端页面使用ES语言(export default ,import)，后端使用commonjs语言(module.exprot ,require)
   name: 'App',//运行每个页面都运行App.vue，
   provide(){
