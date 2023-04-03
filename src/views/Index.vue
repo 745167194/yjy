@@ -1,5 +1,5 @@
 <template>
-  <div  style="height: 100%;background-color: #283443">
+  <div  style="height: 100%;background-color: #2d3a4b">
       <!--主页面-->
       <el-container>
         <el-header>
@@ -23,30 +23,54 @@
           <div class="indexButton">
           <div class="div1">
             <div class="smallcon" @click="layout">
-1
+              <div>
+                <i class="el-icon-video-camera-solid" style="font-size: 100px;margin-top: 90px"></i>
+              </div>
+              <span style="font-size: 17px">1</span>
             </div>
             <div class="smallcon" @click="chart">
-chart
+              <div>
+                <i class="el-icon-s-data" style="font-size: 100px;margin-top: 90px"></i>
+              </div>
+              <span style="font-size: 17px">Chart</span>
             </div>
             <div class="smallcon" @click="network">
-              Network
+              <div>
+                <i class="el-icon-s-platform" style="font-size: 100px;margin-top: 90px"></i>
+              </div>
+              <span style="font-size: 17px">Network</span>
             </div>
             <div class="smallcon" @click="myevent">
-              Event
+              <div>
+                <i class="el-icon-s-claim" style="font-size: 100px;margin-top: 90px"></i>
+              </div>
+              <span style="font-size: 17px">Event</span>
             </div>
           </div>
           <div class="div2">
             <div class="smallcon">
-5
+              <div>
+                <i class="el-icon-message-solid" style="font-size: 100px;margin-top: 90px"></i>
+              </div>
+              <span style="font-size: 17px">5</span>
             </div>
             <div class="smallcon" @click="system">
-              System
+              <div>
+                <i class="el-icon-s-operation" style="font-size: 100px;margin-top: 90px"></i>
+              </div>
+              <span style="font-size: 17px">System</span>
             </div>
             <div class="smallcon">
-7
+              <div>
+                <i class="el-icon-s-opportunity" style="font-size: 100px;margin-top: 90px"></i>
+              </div>
+              <span style="font-size: 17px">7</span>
             </div>
             <div class="smallcon" @click="log">
-              Log
+              <div>
+                <i class="el-icon-s-order" style="font-size: 100px;margin-top: 90px"></i>
+              </div>
+              <span style="font-size: 17px">Log</span>
             </div>
           </div>
           </div>
