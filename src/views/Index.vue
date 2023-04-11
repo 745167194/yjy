@@ -26,7 +26,7 @@
               <div>
                 <i class="el-icon-video-camera-solid" style="font-size: 100px;margin-top: 90px"></i>
               </div>
-              <span style="font-size: 17px">1</span>
+              <span style="font-size: 17px">无内容1</span>
             </div>
             <div class="smallcon" @click="chart">
               <div>
@@ -52,7 +52,7 @@
               <div>
                 <i class="el-icon-message-solid" style="font-size: 100px;margin-top: 90px"></i>
               </div>
-              <span style="font-size: 17px">5</span>
+              <span style="font-size: 17px">无内容5</span>
             </div>
             <div class="smallcon" @click="system">
               <div>
@@ -64,7 +64,7 @@
               <div>
                 <i class="el-icon-s-opportunity" style="font-size: 100px;margin-top: 90px"></i>
               </div>
-              <span style="font-size: 17px">7</span>
+              <span style="font-size: 17px">无内容7</span>
             </div>
             <div class="smallcon" @click="log">
               <div>
