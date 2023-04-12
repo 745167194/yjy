@@ -17,6 +17,8 @@ import elementResizeDetectorMaker from "element-resize-detector"
 import 'default-passive-events'
 import '../fetchmock/index'
 import websocket from 'vue-native-websocket';
+//导入图标
+import './assets/iconfont/iconfont.css'
 
 
 Vue.use(websocket, '', {

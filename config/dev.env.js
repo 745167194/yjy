@@ -1,8 +1,6 @@
 'use strict'
-const merge = require('webpack-merge')
-const prodEnv = require('./prod.env')
-
-module.exports = merge(prodEnv, {
+//development环境变量
+module.exports={
   NODE_ENV: '"development"',
-  MOCK: 'true',
-})
+  VUE_APP_URL:'"http://localhost:8080"'
+}

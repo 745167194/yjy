@@ -7,10 +7,17 @@ async function requestRpcPost(id,method, params) {
   const requestObject = jsonrpc.request(id, method, params);
   let string = JSON.stringify(requestObject);
   //console.log("sub:","{"+string.substring(17))
-  const responseJson =await fetch('http://localhost:8080/RPC', {
+  console.log("env:"+process.env.NODE_ENV,"request url:"+process.env.VUE_APP_URL)
+  const responseJson =await fetch(process.env.VUE_APP_URL+'/RPC', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers:
+      {
+        'Content-Type': 'application/json',
+        'Accept':'application/json,text/plain,*/*',
+      },
+    credentials: 'include',//携带cookie
     body: "{"+string.substring(17),   // 使用payload方式，去掉版本号
+
   }).then(res => {
     //console.log("response????????????????:", res)
     return res.json() //注意生效范围

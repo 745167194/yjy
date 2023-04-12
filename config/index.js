@@ -5,7 +5,9 @@
 const path = require('path')
 
 module.exports = {
+  //开发模式打包配置
   dev: {
+    NODE_ENV: '"development"',
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
@@ -42,20 +44,22 @@ module.exports = {
     cssSourceMap: true
   },
 
+  //生产环境打包配置
   build: {
+    NODE_ENV: '"production"',
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsSubDirectory: 'static', //webpack资源会被编译到../dist/static目录  assetsRoot+assetsSubDirectory
+    assetsPublicPath: './', //资源的根目录,后台有要求的话一般改为./ 或者根据具体目录添加，不然引用不到静态资源
 
     /**
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: true, //在构建生产环境版本时是否开启source map。
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 

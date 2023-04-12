@@ -1,10 +1,11 @@
 {
   "name": "vue-element",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Vue.js project",
   "author": "杨佳颖 <745167194@qq.com>",
   "private": true,
   "scripts": {
+
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js"
@@ -22,6 +23,7 @@
     "jsonrpc": "^0.1.1",
     "jsonrpc-lite": "^2.2.0",
     "path": "^0.12.7",
+    "serve": "^14.2.0",
     "utils": "^0.3.1",
     "vue": "^2.5.2",
     "vue-clipboard2": "^0.3.3",

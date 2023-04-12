@@ -1,9 +1,3 @@
-module.exports = {
-  devServer: {
-    before: require('./mock/index.js') // 引入 mock/index.js
-  }
-}
-
 
 const path = require('path')
 
@@ -24,6 +18,10 @@ module.exports = {
       alias: {
         '@': resolve('src') //配置根目录的@方法
       }
+    },
+    //使用三方提供CDN
+    externals: {
+      "element-ui": "ELEMENT",
     }
   },
 }

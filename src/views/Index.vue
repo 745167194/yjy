@@ -154,10 +154,9 @@ export default {
   color:#505050;
 }
 .logo{
-  width: 100%;
+  width: 80%;
   height: 100%;
   object-fit: contain;
-
 }
 .indexButton{
   background-color: white;

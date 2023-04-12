@@ -1,5 +1,6 @@
 'use strict'
-module.exports = {
+module.exports={
   NODE_ENV: '"production"',
-  MOCK: 'false',
+  Mock:false,
+  VUE_APP_URL: '"http://192.168.56.101:8080"'
 }

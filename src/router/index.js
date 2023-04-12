@@ -126,5 +126,9 @@ export default new Router({
     path:'*', //404   通配符*
     component:NotFound
   },
+    {
+      path:'',
+      redirect:'/index'
+    }
   ]
 })
