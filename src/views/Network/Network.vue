@@ -33,6 +33,12 @@
           <el-menu-item  index="/basicService">
             <span slot="title"><i class="el-icon-s-home"></i>basicService</span>
           </el-menu-item>
+          <el-menu-item  index="/serialport">
+            <span slot="title"><i class="el-icon-s-home"></i>serialPort</span>
+          </el-menu-item>
+          <el-menu-item  index="/can">
+            <span slot="title"><i class="el-icon-s-home"></i>CAN</span>
+          </el-menu-item>
         </el-menu>
 
         <el-main>

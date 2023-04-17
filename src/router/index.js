@@ -17,6 +17,8 @@ import EventIndex from "../views/Event/index.vue"
 import Alarm from "../views/Event/Alarm.vue"
 import ChartIndex from "../views/Chart/index.vue"
 import ChartLine from "../views/Chart/Line.vue"
+import SerialPort from "../views/Network/SerialPort.vue"
+import CAN from "../views/Network/CAN.vue"
 
 
 Vue.use(Router);
@@ -58,6 +60,16 @@ export default new Router({
           name: 'TCPIP',
           component: TCPIP
         },
+        {
+          path:'/serialport',
+          name:'SerialPort',
+          component: SerialPort
+        },
+        {
+          path:'/can',
+          name:'CAN',
+          component: CAN
+        }
       ]
     },
     {//System页面
