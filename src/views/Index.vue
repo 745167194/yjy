@@ -1,88 +1,82 @@
 <template>
-  <div  style="height: 100%;background-color: #2d3a4b">
+  <div :class="bgFlag?'bgBlue':'bgWhite'">
       <!--主页面-->
       <el-container>
         <el-header>
-          <div style="float: left;height:100%" >
-            <img class="logo" src="../assets/R-C.png" alt="logo">
-          </div>
-          <div style="float:right ">
+          <el-row style="height: 100%;"  >
+            <el-col :lg="2"  class="block" >
+              <img class="logo" src="../assets/logo1.png" alt="logo">
+            </el-col>
+            <el-col :lg="1" class="block">
+              <i class="iconfont my-eliconhomepage" @click="toIndex"></i>
+            </el-col>
 
-            <el-dropdown >
-              <i class="el-icon-setting icon" style="margin-right: 15px;font-size: 20px"></i>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>管理员中心</el-dropdown-item>
-                <el-dropdown-item @click.native="logout">退出登录</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-            <span style="color: #333333">{{$store.getters.getAdmin.name}}</span>
-          </div>
+            <el-col :lg="18"  class="block">
+
+            </el-col>
+
+            <el-col  :lg="3"  class="block">
+              <el-dropdown show-timeout=0.2 hide-timeout=0.2>
+                <i class="iconfont my-eliconworkbench_fill"></i>
+                <el-dropdown-menu slot="dropdown" >
+                  <el-dropdown-item >
+                    <slot style="background-color: #f56c6c;width: 100%">
+                      <i class="iconfont my-eliconworkbench_fill" style="color: #1482f0"></i>
+                    </slot>
+                    {{ $t('skin')}}
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+
+              <el-dropdown show-timeout=0.2 hide-timeout=0.2 >
+                <i class="iconfont my-eliconint" ></i>
+                <el-dropdown-menu slot="dropdown" >
+                  <el-dropdown-item @click.native="changeLanguage('zh')" >简体中文</el-dropdown-item>
+                  <el-dropdown-item @click.native="changeLanguage('en')" >English</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+
+              <el-dropdown show-timeout=0.2 hide-timeout=0.2>
+                <i class="iconfont my-eliconmine" ></i>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item @click.native="logout">{{ $t('logout') }}</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+
+              <span style="color: white;align-content: center">{{$store.getters.getAdmin.name}}</span>
+              <el-dropdown show-timeout=0.2 hide-timeout=0.2>
+                <i class="iconfont my-eliconsetup_fill"></i>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item @click.native="network">{{ $t('network') }}</el-dropdown-item>
+                  <el-dropdown-item @click.native="myevent">{{ $t('myEvent') }}</el-dropdown-item>
+                  <el-dropdown-item @click.native="log">{{ $t('log') }}</el-dropdown-item>
+                  <el-dropdown-item @click.native="system">{{ $t('system') }}</el-dropdown-item>
+                  <el-dropdown-item @click.native="chart">{{ $t('chart') }}</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </el-col>
+          </el-row>
         </el-header>
 
-        <el-main>
-          <div class="indexButton">
-          <div class="div1">
-            <div class="smallcon" @click="layout">
-              <div>
-                <i class="el-icon-video-camera-solid" style="font-size: 100px;margin-top: 90px"></i>
-              </div>
-              <span style="font-size: 17px">无内容1</span>
-            </div>
-            <div class="smallcon" @click="chart">
-              <div>
-                <i class="el-icon-s-data" style="font-size: 100px;margin-top: 90px"></i>
-              </div>
-              <span style="font-size: 17px">Chart</span>
-            </div>
-            <div class="smallcon" @click="network">
-              <div>
-                <i class="el-icon-s-platform" style="font-size: 100px;margin-top: 90px"></i>
-              </div>
-              <span style="font-size: 17px">Network</span>
-            </div>
-            <div class="smallcon" @click="myevent">
-              <div>
-                <i class="el-icon-s-claim" style="font-size: 100px;margin-top: 90px"></i>
-              </div>
-              <span style="font-size: 17px">Event</span>
-            </div>
-          </div>
-          <div class="div2">
-            <div class="smallcon">
-              <div>
-                <i class="el-icon-message-solid" style="font-size: 100px;margin-top: 90px"></i>
-              </div>
-              <span style="font-size: 17px">无内容5</span>
-            </div>
-            <div class="smallcon" @click="system">
-              <div>
-                <i class="el-icon-s-operation" style="font-size: 100px;margin-top: 90px"></i>
-              </div>
-              <span style="font-size: 17px">System</span>
-            </div>
-            <div class="smallcon">
-              <div>
-                <i class="el-icon-s-opportunity" style="font-size: 100px;margin-top: 90px"></i>
-              </div>
-              <span style="font-size: 17px">无内容7</span>
-            </div>
-            <div class="smallcon" @click="log">
-              <div>
-                <i class="el-icon-s-order" style="font-size: 100px;margin-top: 90px"></i>
-              </div>
-              <span style="font-size: 17px">Log</span>
-            </div>
-          </div>
-          </div>
+        <el-main >
+          <router-view></router-view>
         </el-main>
       </el-container>
   </div>
 </template>
 
 <script>
+import IndexTran from "../components/Index/IndexTran.vue"
 export default {
   name: "Index",
-
+  data(){
+    return {
+      bgFlag:true,
+    }
+  },
+  components:{
+    IndexTran
+  },
   methods:{
     saveState(){
       //保存state,使得刷新后还能得到原来的state数据
@@ -97,81 +91,89 @@ export default {
       sessionStorage.setItem('isLogin',false);//设置登录状态
       this.$router.push('/logout');
     },
+    toIndex(){
+      //this.bgFlag=true;
+      console.log(this.bgFlag)
+      this.$router.push({name: 'Index', params: {name: this.$store.getters.getAdmin.name}});
+    },
+    changeLanguage(lang) { //切换方法
+      this.$i18n.locale = lang
+    },
     network(){
+      //this.bgFlag=false;
       this.$router.push({name:'Network'});
     },
     system(){
+      //this.bgFlag=false;
       this.$router.push({name:'System'});
     },
     myevent(){
+      //this.bgFlag=false;
       this.$router.push({name:'EventIndex'});
     },
     log(){
+      //this.bgFlag=false;
       this.$router.push({name:'LogIndex'});
     },
-    layout(){
-      //this.$router.push({name: 'Layout', params: {name: this.$store.getters.getAdmin.name}});
-    },
     chart(){
+      //this.bgFlag=false;
       this.$router.push({name: 'ChartIndex'});
     },
-  }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 
-.smallcon{
-  width: 300px ;
-  height: 300px;
-  text-align: center;
-  margin: 10px ;
-  //border:1px solid #DCDFE6;
-  //box-shadow:0 0 30px #DCDFE6;
-  border-radius:10px;
-
-}
-.smallcon:hover{
-  //transform: scale(1.05);//四周变大
-  background-color: #F0F8FF;
-  color: #20a0ff;
-
-}
-.div1{
-  justify-content: center;
-  display: flex;
-  height:320px;
-  border-radius:10px;
-}
-.div2{
-  border-radius:10px;
-  display: flex;
-  height:320px;
-  bottom: 0;
-  justify-content: center;
-}
-.icon:hover{
-  color:#505050;
-}
-.logo{
-  width: 80%;
+.bgBlue{
   height: 100%;
-  object-fit: contain;
+  width: 100%;
+  background-image: url("../assets/opacity.png"),url("../assets/people.png"),url("../assets/home_bg.png"),linear-gradient(350deg, #F3F3F3 50%, #375FFD 50%);
+  background-position:left top,left top, right top;
+  background-repeat: no-repeat,no-repeat, no-repeat,no-repeat;
+  background-size:auto,auto,auto,cover;
 }
-.indexButton{
+.bgWhite{
+  height: 100%;
+  width: 100%;
   background-color: white;
-  position: absolute;
-  height: 640px;
-  width: 1200px;
-  bottom: 10px;
-  left: 50%;//先像左移动一半的距离
-  margin-left: -600px; //减去宽度的一半，实现元素绝对定位下的居中
-  box-shadow:0 0 30px black;
-  border-radius:10px;
 }
+
+.iconfont {
+  margin-left: 8px;
+  color:rgba(255,255,255,0.7);
+  font-size:25px
+}
+.iconfont:hover{
+  color:white;
+}
+
 .el-header{
   font-size: 12px;
-  background-color: white;
-  box-shadow:0 0 30px black;
+  background-color:rgba(0,0,58,0.8);
+  height:70px ;
 }
+
+.logo{
+  width: 65%;
+  height: 55%;
+  //display: flex;
+}
+
+.block{
+  display:flex;
+  justify-content:center;/*主轴上居中*/
+  align-items:center;/*侧轴上居中*/
+  height:100%;
+}
+
+.el-main{
+  margin: 0;
+  padding: 0;
+}
+.selectde{
+
+}
+
+
 </style>

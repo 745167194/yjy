@@ -1,19 +1,18 @@
-<template>
-  <div style="height: 100%"> <!-- ref=id  :rules:表单验证  :model = v-bind 实现双向数据绑定 -->
+<template><!-- ref=id  :rules:表单验证  :model = v-bind 实现双向数据绑定 -->
+   <div class="background">
     <div class="login-container">
-      <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
-        <div class="title-container">
-          <h3 class="title">Login Form</h3>
+      <el-form ref="loginForm" :model="loginForm" autocomplete="on" label-position="left" class="login-form" >
+        <div class="logo-container">
+          <img class="logo" src="../assets/login_logo.png" alt="logo">
         </div>
         <el-form-item prop="account" >
-          <span class="svg-container"><i class="el-icon-user-solid" style="margin-right: 15px;font-size: 20px"></i></span>
-          <el-input ref="account" v-model="loginForm.account" placeholder="Account" name="account" type="text"/>
+          <el-input ref="account" v-model="loginForm.account" placeholder="Account" name="account" prefix-icon="el-icon-user-solid"/>
         </el-form-item>
-        <el-form-item prop="password">
-          <span class="svg-container"><i class="el-icon-lock" style="margin-right: 15px;font-size: 20px"></i></span>
-          <el-input ref="password" v-model="loginForm.password" type='password' placeholder="Password" name="password" show-password/>
+        <el-form-item prop="password" >
+          <el-input class="myinput" ref="password" v-model="loginForm.password" type='password' placeholder="Password"
+                    name="password" show-password prefix-icon="el-icon-lock"/>
         </el-form-item>
-        <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="submitForm('loginForm')">Login</el-button>
+        <el-button type="primary" class="login-button" @click="submitForm('loginForm')">Login</el-button>
         <div style="position:relative">
           <div class="tips">
             <span style="margin-right:18px;">Account : admin</span>
@@ -21,8 +20,8 @@
           </div>
         </div>
       </el-form>
-    </div>
-  </div>
+      </div>
+   </div>
 </template>
 
 <script>
@@ -34,34 +33,21 @@
           account:'',//form:account
           password:''//form:password
         },
-        loginRules:{
-          account:[{//prop=name
-            required:true,
-            message:'Please input your account!',
-            trigger:'blur'
-          }],
-          password:[{//prop=password
-            required:true,
-            message:'Please input your password!',
-            trigger:'blur'
-          }]
-        },
       }
     },
 
     methods:{
       submitForm(formName){
-        this.$refs[formName].validate(async (valid) => {
-          if (valid) {
+          if (this.loginForm.account && this.loginForm.password) {
             this.getAdmin()
           }
           else {
             this.$message({
-              message: '用户名或密码错误',
+              message: '请输入用户名密码',
               type: 'warning'
             });
           }
-        })
+
       },
 
       getAdmin(){//用户登录验证
@@ -100,125 +86,85 @@
   }
 </script>
 
-<style lang="scss">
-/* 修复input 背景不协调 和光标变色 */
-/* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
-
-$bg:#283443;
-$light_gray:#fff;
-$cursor: #fff;
-
-@supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
-  .login-container .el-input input {
-    color: $cursor;
-  }
-}
-
-/* reset element-ui css */
-.login-container {
-  .el-input {
-    display: inline-block;
-    height: 47px;
-    width: 85%;
-
-    input {
-      background: transparent;
-      border: 0px;
-      -webkit-appearance: none;
-      border-radius: 0px;
-      padding: 12px 5px 12px 15px;
-      color: $light_gray;
-      height: 47px;
-      caret-color: $cursor;
-
-      &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: $cursor !important;
-      }
-    }
-  }
-
-  .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    color: #454545;
-  }
-}
-</style>
 
 <style lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
+
+//最大背景容器
+.background{
+  width: 100%;
+  height: 100%;
+  background:url("../assets/login_bg.png") fixed no-repeat;
+  background-size: cover;
+  text-align: center //实现水平居中
+}
 
 .login-container {
-  min-height: 100%;
-  width: 100%;
-  background-color: $bg;
-  overflow: hidden;
 
-  .login-form {
-    position: relative;
-    width: 520px;
-    max-width: 100%;
-    padding: 160px 35px 0;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-
-  .tips {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
-
-    span {
-      &:first-of-type {
-        margin-right: 16px;
-      }
-    }
-  }
-
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    width: 30px;
-    display: inline-block;
-  }
-
-  .title-container {
-    position: relative;
-
-    .title {
-      font-size: 26px;
-      color: $light_gray;
-      margin: 0px auto 40px auto;
-      text-align: center;
-      font-weight: bold;
-    }
-  }
-
-  .show-pwd {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 16px;
-    color: $dark_gray;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .thirdparty-button {
-    position: absolute;
-    right: 0;
-    bottom: 6px;
-  }
-
-  @media only screen and (max-width: 470px) {
-    .thirdparty-button {
-      display: none;
-    }
-  }
 }
+
+//表单容器
+.login-form{
+  width: 400px;
+  height: 500px;
+  border-radius:10px;
+  position :absolute;
+  top: 50%;//先像左移动一半的距离
+  margin-top: -250px; //减去宽度的一半，实现元素绝对定位下的居中
+  left: 50%;//先像左移动一半的距离
+  margin-left: -200px; //减去宽度的一半，实现元素绝对定位下的居中
+  background-color:rgba(0,0,0,0.10);//最后一个表示透明度，如果用opacity则里面的元素也会变透明
+  border: solid 1px rgba(255,255,255,0.10);
+}
+
+//logo容器
+.logo-container{
+  margin-bottom: 40px;
+  margin-top: 80px;
+}
+
+.el-input{
+  //el-input高度不能直接用height，只能通过type="textarea" :rows="8"来实现，但是这样会导致输入不只一行，非常难看
+  // 所以另外定义一个使用无lang="scss"的样式，如代码最后所定义
+  border-radius: 20px;
+  width: 300px;
+  height: 45px;
+  outline-color: rgba(83, 160, 0, 0.61);
+}
+
+.el-form-item{
+  margin-top: 20px;
+}
+
+.login-button{
+  margin-top: 30px;
+  width: 300px;
+  height: 45px;
+  border-radius: 20px;
+  background-color: #8cc5ff;
+}
+.tips{
+  margin-top: 20px;
+  color: white;
+}
+
+
+</style>
+
+<style scoped>
+
+
+/deep/ .el-input__inner{
+  width: 300px;
+  height: 45px;
+  left:50%;
+  padding-left: 50px;
+  border-radius: 20px;
+  background-color:rgba(0,0,0,0);
+  border:solid 1px rgba(255,255,255,0.5);
+  color: white;
+}
+/deep/ .el-input__inner:hover{
+  border:solid 1px white;
+}
+
 </style>

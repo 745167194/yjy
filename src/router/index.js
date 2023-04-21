@@ -19,12 +19,12 @@ import ChartIndex from "../views/Chart/index.vue"
 import ChartLine from "../views/Chart/Line.vue"
 import SerialPort from "../views/Network/SerialPort.vue"
 import CAN from "../views/Network/CAN.vue"
-
+import IndexTran  from "../components/Index/IndexTran.vue"
 
 Vue.use(Router);
 
 export default new Router({
-  mode:'history',//历史模式，没有#
+  mode:'history',//历史模式，没有# hash模式：有#
   routes:[
   {
     //登录页
@@ -36,102 +36,116 @@ export default new Router({
       //索引页
       path:'/index',
       name:'Index',
-      component:indexVue
-    },
-    {//network
-      path:'/network',
-      name:'Network',
-      component:Network,
-      alwaysShow:false,
-      redirect:'/TCPIP',
+      component:indexVue,
+      redirect:'/indextran',
       children:[
         {
-          path: '/basicService',
-          name: 'basicService',
-          component: basicService
+          path:'/indextran',
+          name:'IndexTran',
+          component:IndexTran
         },
+
+        //network
         {
-          path:'/port',
-          name: 'Port',
-          component: Port
+          path:'/network',
+          name:'Network',
+          component:Network,
+          alwaysShow:false,
+          redirect:'/TCPIP',
+          children:[
+            {
+              path: '/basicService',
+              name: 'basicService',
+              component: basicService
+            },
+            {
+              path:'/port',
+              name: 'Port',
+              component: Port
+            },
+            {
+              path: '/TCPIP',
+              name: 'TCPIP',
+              component: TCPIP
+            },
+            {
+              path:'/serialport',
+              name:'SerialPort',
+              component: SerialPort
+            },
+            {
+              path:'/can',
+              name:'CAN',
+              component: CAN
+            }
+          ]
         },
-        {
-          path: '/TCPIP',
-          name: 'TCPIP',
-          component: TCPIP
+
+        {//System页面
+          path:'/system',
+          name:'System',
+          component:System,
+          redirect:'/general',
+          children:[
+            {
+              path:'/general',
+              name:'General',
+              component: General
+            },
+            {
+              path:'/account',
+              name:'Account',
+              component: Account
+            }
+          ]
         },
-        {
-          path:'/serialport',
-          name:'SerialPort',
-          component: SerialPort
+
+        {//Log页面
+          path:'/logindex',
+          name:'LogIndex',
+          component:LogIndex,
+          redirect:'/log',
+          children:[
+            {
+              path:'/log',
+              name:'Log',
+              component: Log,
+            },
+            {
+              path:'/remotelog',
+              name:'RemoteLog',
+              component: RemoteLog
+            }
+          ]
         },
-        {
-          path:'/can',
-          name:'CAN',
-          component: CAN
-        }
-      ]
-    },
-    {//System页面
-      path:'/system',
-      name:'System',
-      component:System,
-      redirect:'/general',
-      children:[
-        {
-          path:'/general',
-          name:'General',
-          component: General
+
+        {//Event页面
+          path:'/eventindex',
+          name:'EventIndex',
+          component:EventIndex,
+          redirect:'/alarm',
+          children:[
+            {
+              path:'/alarm',
+              name:'Alarm',
+              component: Alarm
+            }
+          ]
         },
-        {
-          path:'/account',
-          name:'Account',
-          component: Account
-        }
-      ]
-    },
-    {//Log页面
-      path:'/logindex',
-      name:'LogIndex',
-      component:LogIndex,
-      redirect:'/log',
-      children:[
-        {
-          path:'/log',
-          name:'Log',
-          component: Log,
+
+        {//图表
+          path:'/chartindex',
+          name:'ChartIndex',
+          component:ChartIndex,
+          redirect:'/chartline',
+          children:[
+            {
+              path:'/chartline',
+              name:'ChartLine',
+              component:ChartLine
+            }
+          ]
         },
-        {
-          path:'/remotelog',
-          name:'RemoteLog',
-          component: RemoteLog
-        }
-      ]
-    },
-    {//Event页面
-      path:'/eventindex',
-      name:'EventIndex',
-      component:EventIndex,
-      redirect:'/alarm',
-      children:[
-        {
-          path:'/alarm',
-          name:'Alarm',
-          component: Alarm
-        }
-      ]
-    },
-    {//图表
-      path:'/chartindex',
-      name:'ChartIndex',
-      component:ChartIndex,
-      redirect:'/chartline',
-      children:[
-        {
-          path:'/chartline',
-          name:'ChartLine',
-          component:ChartLine
-        }
       ]
     },
   {

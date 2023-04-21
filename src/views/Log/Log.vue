@@ -2,20 +2,20 @@
   <div style="height: 100%;width: 100%">
 
     <el-form :model="Form"  ref="Form">
-      <el-form-item>
-        查找日期：<el-date-picker placeholder="选择日期" v-model="Form.time" style="width: 200px;margin-right: 20px" value-format ="yyyy-MM-dd"></el-date-picker>
-        Type：
+      <el-form-item>{{$t('logIndex.searchDate')}}
+        <el-date-picker :placeholder="$t('logIndex.selectDate')" v-model="Form.time" style="width: 200px;margin-right: 20px" value-format ="yyyy-MM-dd"></el-date-picker>
+        {{$t('logIndex.type')}}
           <el-select v-model="Form.type" >
-            <el-option label="All" value="All"></el-option>
-          <el-option label="System" value="System"></el-option>
-          <el-option label="Config" value="Config"></el-option>
-          <el-option label="Storage" value="Storage"></el-option>
-          <el-option label="Alarm Event" value="Alarm Event"></el-option>
-          <el-option label="Record" value="Record"></el-option>
-          <el-option label="Account" value="Account"></el-option>
-          <el-option label="Security" value="Security"></el-option>
+            <el-option :label="$t('all')" value="All"></el-option>
+          <el-option :label="$t('system')" value="System"></el-option>
+          <el-option :label="$t('config')" value="Config"></el-option>
+          <el-option :label="$t('storage')" value="Storage"></el-option>
+          <el-option :label="$t('myEvent')" value="Alarm Event"></el-option>
+          <el-option :label="$t('record')" value="Record"></el-option>
+          <el-option :label="$t('account')" value="Account"></el-option>
+          <el-option :label="$t('security')" value="Security"></el-option>
         </el-select>
-        <el-button @click="search">Search</el-button>
+        <el-button @click="search">{{ $t('search') }}</el-button>
       </el-form-item>
     </el-form>
 
@@ -36,9 +36,9 @@
             <span>{{ scope.$index + 1}}</span>
           </template>
         </el-table-column>
-        <el-table-column label="Time" prop="time"></el-table-column>
-        <el-table-column label="Username" prop="username"></el-table-column>
-        <el-table-column label="Type" prop="type"></el-table-column>
+        <el-table-column :label="$t('logIndex.time')" prop="time"></el-table-column>
+        <el-table-column :label="$t('logIndex.username')" prop="username"></el-table-column>
+        <el-table-column :label="$t('logIndex.type')" prop="type"></el-table-column>
       </el-table>
 
   </div>

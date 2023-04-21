@@ -18,7 +18,13 @@ import 'default-passive-events'
 import '../fetchmock/index'
 import websocket from 'vue-native-websocket';
 //导入图标
-import './assets/iconfont/iconfont.css'
+import './assets/iconfont/iconfont.css';
+import zh from './i18n/zh'
+import en from './i18n/en'
+import VueI18n from 'vue-i18n'
+
+//国际化
+Vue.use(VueI18n)
 
 
 Vue.use(websocket, '', {
@@ -36,7 +42,21 @@ Vue.use(VueClipboard);//使用VueClipboard，实现IP输入框
 Vue.prototype.axios = axios;//声明使用axios
 Vue.prototype.$echarts = echarts;//引入echarts
 Vue.prototype.$api = api;
+//Vue.use(ElementUI, { locale })//国际化
 
+
+
+// 3、组合语言包对象
+const messages = {
+  zh,
+  en
+}
+
+// 4、创建 VueI18n 实例，并为 messages 和 locale 属性赋值
+const i18n = new VueI18n({
+  messages,
+  locale: 'en'
+})
 
 Vue.config.productionTip = false
 //process.env.MOCK  &&  require( '../mock' )
@@ -80,6 +100,7 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n, //挂载
   render: h => h(App),//element初始化
 })
 

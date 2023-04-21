@@ -1,56 +1,56 @@
 <template>
   <div>
     <el-form :model="Form" ref="Form" label-width="150px" label-position="left">
-      <el-form-item label="Host Name" prop="host_name">
+      <el-form-item :label="$t('networkIndex.tcpipIndex.hostName')" prop="host_name">
         <el-input style="width: 220px" v-model="Form.host_name" ></el-input>
       </el-form-item>
-      <el-form-item label="ARP/Ping" prop="ARP_Ping">
+      <el-form-item :label="$t('networkIndex.tcpipIndex.arp')" prop="ARP_Ping">
         <el-switch v-model="Form.ARP_Ping"></el-switch>
       </el-form-item>
-      <el-form-item label="NIC" prop="NIC">
+      <el-form-item :label="$t('networkIndex.tcpipIndex.nic')" prop="NIC">
         <el-select v-model="Form.NIC" >
-          <el-option label="Wired(Default)" value="Wired" ></el-option>
+          <el-option :label="$t('networkIndex.tcpipIndex.wired')" value="Wired" ></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="Mode" prop="Mode">
+      <el-form-item :label="$t('networkIndex.tcpipIndex.mode')" prop="Mode">
         <el-radio-group v-model="Form.Mode">
-          <el-radio label="Static"></el-radio>
-          <el-radio label="DHCP"></el-radio>
+          <el-radio :label="$t('networkIndex.tcpipIndex.static')" value="static"></el-radio>
+          <el-radio :label="$t('networkIndex.tcpipIndex.dhcp')" value="DHCP"></el-radio>
         </el-radio-group>
       </el-form-item>
 
-      <el-form-item label="Mac Address:" prop="WifiMac"  >
+      <el-form-item :label="$t('networkIndex.tcpipIndex.mac')" prop="WifiMac"  >
         <!--MAC地址-->
         <macInput style="width: 280px" v-model="Form.WifiMac" :value="Form.WifiMac" ref="Mac"/>
       </el-form-item>
 
-      <el-form-item label="IP Version" prop="IPversion">
+      <el-form-item :label="$t('networkIndex.tcpipIndex.ipVersion')" prop="IPversion">
         <el-select v-model="Form.IPVersion">
           <el-option label="IPv4" value="IPv4" ></el-option>
           <el-option label="IPv6" value="IPv6" ></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="IP Address:" prop="IPAddress"  >
+      <el-form-item :label="$t('networkIndex.tcpipIndex.ip')" prop="IPAddress"  >
         <ipInput1 style="width: 220px" ref="IPAddress" v-model="Form.IPAddress"></ipInput1>
       </el-form-item>
-      <el-form-item label="Subnet Mask:" prop="SubnetMask" >
+      <el-form-item :label="$t('networkIndex.tcpipIndex.subnetMask')" prop="SubnetMask" >
         <ipInput2 style="width: 220px" ref="SubnetMask" v-model="Form.SubnetMask" :autoFocus="true"></ipInput2>
       </el-form-item>
-      <el-form-item label="Default Gateway:" prop="DefaultGateway" style="margin-top: 5px">
+      <el-form-item :label="$t('networkIndex.tcpipIndex.defaultGateway')" prop="DefaultGateway" style="margin-top: 5px">
         <ipInput3 style="width: 220px" ref="DefaultGateway" v-model="Form.DefaultGateway" :autoFocus="true"></ipInput3>
       </el-form-item>
-      <el-form-item label="Preferred DNS:" prop="PreferredDNS" style="margin-top: 5px">
+      <el-form-item :label="$t('networkIndex.tcpipIndex.preferredDns')" prop="PreferredDNS" style="margin-top: 5px">
         <ipInput4 style="width: 220px" ref="PreferredDNS" v-model="Form.PreferredDNS" ></ipInput4>
       </el-form-item>
-      <el-form-item label="Alternate DNS:" prop="AlternateDNS">
+      <el-form-item :label="$t('networkIndex.tcpipIndex.alternateDns')" prop="AlternateDNS">
         <ipInput5 style="width: 220px" ref="AlternateDNS" v-model="Form.AlternateDNS" ></ipInput5>
       </el-form-item>
 
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm()">Apply</el-button>
+        <el-button type="primary" @click="submitForm()">{{ $t('apply') }}</el-button>
 
-        <el-button  style="margin: 20px" @click="Default()">Default</el-button>
+        <el-button  style="margin: 20px" @click="Default()">{{ $t('default') }}</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -72,8 +72,8 @@ export default {
       Form: {//表单数据
         host_name: 'IPC',
         ARP_Ping: true,
-        NIC: 'Wired(Default)',
-        Mode: 'Static',
+        NIC: 'Wired',
+        Mode: 'static',
         WifiMac:'',
         IPVersion:'IPv4',
         IPAddress:'',
@@ -95,21 +95,6 @@ export default {
   methods:{
     submitForm() {
       let data=this.Form
-        /*
-        {
-        host_name: this.Form.host_name,
-        ARP_Ping: this.Form.ARP_Ping,
-        NIC: this.Form.NIC,
-        Mode:this.Form.Mode,
-        WifiMac:this.$refs.Mac.getMac(),
-        IPVersion:this.Form.IPVersion,
-        IPAddress:this.$refs.IPAddress.getIp(),
-        SubnetMask:this.$refs.SubnetMask.getIp(),
-        DefaultGateway:this.$refs.DefaultGateway.getIp(),
-        PreferredDNS:this.$refs.PreferredDNS.getIp(),
-        AlternateDNS:this.$refs.AlternateDNS.getIp()
-      }*/
-      //console.log("mydata:",data)
       this.$api.CallRpc('applyTCPIP','applyTCPIP',data)
     },
     Refresh(){

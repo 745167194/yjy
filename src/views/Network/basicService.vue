@@ -1,38 +1,38 @@
 <template>
   <div>
     <el-form :model="Form" ref="Form" label-width="280px" label-position="left">
-      <el-form-item label="SSH" prop="SSH">
+      <el-form-item :label="$t('networkIndex.basicServiceIndex.ssh')" prop="SSH">
         <el-switch v-model="Form.SSH"></el-switch>
       </el-form-item>
-      <el-form-item label="Multicast/Broadcast Search" prop="Search" >
+      <el-form-item :label="$t('networkIndex.basicServiceIndex.search')" prop="Search" >
         <el-switch v-model="Form.Search"></el-switch>
       </el-form-item>
-      <el-form-item label="CGI" prop="CGI">
+      <el-form-item :label="$t('networkIndex.basicServiceIndex.cgi')" prop="CGI">
         <el-switch v-model="Form.CGI"></el-switch>
       </el-form-item>
-      <el-form-item label="ONVIF" prop="ONVIF" >
+      <el-form-item :label="$t('networkIndex.basicServiceIndex.onvif')" prop="ONVIF" >
         <el-switch v-model="Form.ONVIF"></el-switch>
       </el-form-item>
+      <!--视频管理协议
       <el-form-item label="Genetec" prop="Genetec" >
         <el-switch v-model="Form.Genetec"></el-switch>
-      </el-form-item>
-      <el-form-item label="Mobile Push Notifications" prop="Push" >
+      </el-form-item>-->
+      <el-form-item :label="$t('networkIndex.basicServiceIndex.mobilePushNotifications')" prop="Push" >
         <el-switch v-model="Form.Push"></el-switch>
       </el-form-item>
-      <el-form-item label="Private Protocol Authentication Mode" >
+      <el-form-item :label="$t('networkIndex.basicServiceIndex.privateProtocolAuthenticationMode')" >
         <el-select v-model="Form.PrivateProtocol" >
-          <el-option label="Security Mode (Recommended)" value="1" ></el-option>
-          <el-option label="Compatible Mode" value="2" ></el-option>
+          <el-option :label="$t('networkIndex.basicServiceIndex.securityMode')" value="1" ></el-option>
+          <el-option :label="$t('networkIndex.basicServiceIndex.compatibleMode')" value="2" ></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="Online Log Backup" prop="LogBackup" >
+      <el-form-item :label="$t('networkIndex.basicServiceIndex.onlineLogBackup')" prop="LogBackup" >
         <el-switch v-model="Form.LogBackup"></el-switch>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm()">Apply</el-button>
-        <el-button  style="margin: 20px" @click="Refresh()">Refresh</el-button>
-        <el-button  style="margin: 20px" @click="Default()">Default</el-button>
+        <el-button type="primary" @click="submitForm()">{{ $t('apply') }}</el-button>
+        <el-button  style="margin: 20px" @click="Default()">{{ $t('default') }}</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -61,11 +61,8 @@ export default {
       let data=this.Form
       this.$api.CallRpc('basicService','basicService',data)
     },
-    Refresh(){
-      this.$refs.Form.resetFields();
-    },
     Default(){
-
+      this.$refs.Form.resetFields();
     },
 
   }

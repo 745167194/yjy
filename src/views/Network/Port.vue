@@ -1,56 +1,55 @@
 <template>
   <div>
     <el-form :model="Form" ref="Form" label-width="150px" :rules="FormRules" label-position="left">
-      <el-form-item label="Max Connection:" prop="MaxConnection">
+      <el-form-item :label="$t('networkIndex.portIndex.maxConnection')" prop="MaxConnection">
         <div style="display:flex">
-        <el-input-number v-model="Form.MaxConnection" :min="1" :max="20" label="请输入数量"></el-input-number>
+        <el-input-number v-model="Form.MaxConnection" :min="1" :max="20" ></el-input-number>
         <div> (1~20)</div>
         </div>
       </el-form-item>
 
-      <el-form-item label="TCP Port:" prop="TCPPort">
+      <el-form-item :label="$t('networkIndex.portIndex.tcpPort')" prop="TCPPort">
         <div style="display:flex">
-          <el-input-number v-model="Form.TCPPort" :min="1025" :max="65534" label="请输入数量"></el-input-number>
+          <el-input-number v-model="Form.TCPPort" :min="1025" :max="65534" ></el-input-number>
           <div> (1025~65534)</div>
         </div>
       </el-form-item>
 
-      <el-form-item label="UDP Port:" prop="UDPPort">
+      <el-form-item :label="$t('networkIndex.portIndex.udpPort')" prop="UDPPort">
         <div style="display:flex">
-          <el-input-number v-model="Form.UDPPort" :min="1025" :max="65534" label="请输入数量"></el-input-number>
+          <el-input-number v-model="Form.UDPPort" :min="1025" :max="65534" ></el-input-number>
           <div> (1025~65534)</div>
         </div>
       </el-form-item>
 
-      <el-form-item label="HTTP Port:" prop="HTTPPort">
+      <el-form-item :label="$t('networkIndex.portIndex.httpPort')" prop="HTTPPort">
         <div style="display:flex">
-          <el-input-number v-model="Form.HTTPPort" label="请输入数量"></el-input-number>
+          <el-input-number v-model="Form.HTTPPort" ></el-input-number>
         </div>
       </el-form-item>
 
-      <el-form-item label="RTSP Port" prop="RTSPPort">
+      <el-form-item :label="$t('networkIndex.portIndex.rtspPort')" prop="RTSPPort">
         <div style="display:flex">
-          <el-input-number v-model="Form.RTSPPort" label="请输入数量"></el-input-number>
+          <el-input-number v-model="Form.RTSPPort" ></el-input-number>
         </div>
       </el-form-item>
 
-      <el-form-item label="RTMP Port:" prop="RTMPPort">
+      <el-form-item :label="$t('networkIndex.portIndex.rtmpPort')" prop="RTMPPort">
         <div style="display:flex">
-          <el-input-number v-model="Form.RTMPPort" :min="1025" :max="65534" label="请输入数量"></el-input-number>
+          <el-input-number v-model="Form.RTMPPort" :min="1025" :max="65534" ></el-input-number>
           <div> (1025~65534)</div>
         </div>
       </el-form-item>
 
-      <el-form-item label="HTTPS Port:" prop="HTTPSPort">
+      <el-form-item :label="$t('networkIndex.portIndex.httpsPort')" prop="HTTPSPort">
         <div style="display:flex">
-          <el-input-number v-model="Form.HTTPSPort" label="请输入数量"></el-input-number>
+          <el-input-number v-model="Form.HTTPSPort" ></el-input-number>
         </div>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm()">Apply</el-button>
-        <el-button  style="margin: 20px" @click="Refresh()">Refresh</el-button>
-        <el-button  style="margin: 20px" @click="Default()">Default</el-button>
+        <el-button type="primary" @click="submitForm()">{{ $t('apply') }}</el-button>
+        <el-button  style="margin: 20px" @click="Default()">{{ $t('default') }}</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -114,9 +113,6 @@ export default {
           return false;
         }
       });
-    },
-    Refresh(){
-
     },
     Default(){
 

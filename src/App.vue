@@ -48,6 +48,8 @@ export default {//前端页面使用ES语言(export default ,import)，后端使
 html,body,#app{
   /*统一设置高度为100%*/
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 </style>
