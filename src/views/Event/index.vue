@@ -6,7 +6,7 @@
         <el-menu
           router :default-active=this.$route.path  class="el-menu-vertical">  <!--router属性：会将index作为path进行跳转-->
             <el-menu-item  index="/alarm">
-              <span slot="title"><i class="el-icon-s-home"></i>{{$t('myEventIndex.alarm')}}</span>
+              <span slot="title"><i class="iconfont my-eliconclock" style="margin-right: 10px"></i>{{$t('myEventIndex.alarm')}}</span>
             </el-menu-item>
         </el-menu>
 

@@ -5,10 +5,10 @@
         <!--边栏导航-->
         <el-menu router :default-active="this.$route.path" class="el-menu-vertical" >  <!--router属性：会将index作为path进行跳转-->
           <el-menu-item  index="/general">
-            <span slot="title"><i class="el-icon-s-home"></i>{{ $t('systemIndex.general') }}</span>
+            <span slot="title"><i class="iconfont my-elicontools" style="margin-right: 10px"></i>{{ $t('systemIndex.general') }}</span>
           </el-menu-item>
           <el-menu-item  index="/account">
-            <span slot="title"><i class="el-icon-s-home"></i>{{ $t('systemIndex.account') }}</span>
+            <span slot="title"><i class="iconfont my-eliconaddressbook" style="margin-right: 10px"></i>{{ $t('systemIndex.account') }}</span>
           </el-menu-item>
         </el-menu>
         <el-main class="mymain">
@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 
 .el-container {
   height:100%;

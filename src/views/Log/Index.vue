@@ -6,10 +6,10 @@
         <el-menu
           router :default-active="this.$route.path"  class="el-menu-vertical" >  <!--router属性：会将index作为path进行跳转-->
           <el-menu-item  index="/log">
-            <span slot="title"><i class="el-icon-s-home"></i>{{ $t('log') }}</span>
+            <span slot="title"><i class="iconfont my-eliconactivity" style="margin-right: 10px"></i>{{ $t('log') }}</span>
           </el-menu-item>
           <el-menu-item  index="/remotelog">
-            <span slot="title"><i class="el-icon-s-home"></i>{{ $t('logIndex.remoteLog') }}</span>
+            <span slot="title"><i class="iconfont my-elicondocument" style="margin-right: 10px"></i>{{ $t('logIndex.remoteLog') }}</span>
           </el-menu-item>
         </el-menu>
 
