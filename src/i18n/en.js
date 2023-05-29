@@ -7,6 +7,7 @@ export default {
   apply:"Apply",
   default:"Default",
   search:"Search",
+  reset:"Reset",
 
   network:"Network",
   networkDes:"TCP/IP port basicService serialPort and CAN setting",
@@ -102,7 +103,9 @@ export default {
   chartDes:"Charts and tables",
   chartIndex:{
     line:"Line",
-    lineIndex:{}
+    lineIndex:{
+      difference:"D-value:"
+    }
   },
 
   //可拓展备用

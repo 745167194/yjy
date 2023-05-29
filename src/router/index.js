@@ -20,6 +20,7 @@ import ChartLine from "../views/Chart/Line.vue"
 import SerialPort from "../views/Network/SerialPort.vue"
 import CAN from "../views/Network/CAN.vue"
 import IndexTran  from "../components/Index/IndexTran.vue"
+import ChartBar from "../views/Chart/Bar.vue"
 
 Vue.use(Router);
 
@@ -133,7 +134,7 @@ export default new Router({
           ]
         },
 
-        {//图表
+        {//chart
           path:'/chartindex',
           name:'ChartIndex',
           component:ChartIndex,
@@ -143,6 +144,11 @@ export default new Router({
               path:'/chartline',
               name:'ChartLine',
               component:ChartLine
+            },
+            {
+              path:'/chartbar',
+              name:'ChartBar',
+              component:ChartBar
             }
           ]
         },

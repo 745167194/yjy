@@ -9,7 +9,6 @@
             <span slot="title"><i class="iconfont my-elicondynamic" style="margin-right: 10px"></i>{{ $t('chartIndex.line') }}</span>
           </el-menu-item>
         </el-menu>
-
         <el-main class="mymain">
           <router-view/>
         </el-main>

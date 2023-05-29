@@ -34,14 +34,20 @@ Vue.use(websocket, '', {
   reconnectionAttempts: 5, // 自动重连次数
   reconnectionDelay: 2000, // 重连间隔时间
 });//声明使用webSocket
-Vue.prototype.$erd = elementResizeDetectorMaker();
+
+//socket
+// Vue.use(new VueSocketIO({
+//   // 控制台调试 console.log
+//   debug: true,
+//   // 连接地址 后端提供
+//   connection: 'http://localhost:1100',
+// })),
+
 Vue.use(ElementUI);//声明使用element
 Vue.use(VueRouter);//声明使用vue-router
 Vue.use(Vuex);//神功使用vuex
 Vue.use(VueClipboard);//使用VueClipboard，实现IP输入框
 Vue.prototype.axios = axios;//声明使用axios
-Vue.prototype.$echarts = echarts;//引入echarts
-Vue.prototype.$api = api;
 //Vue.use(ElementUI, { locale })//国际化
 
 

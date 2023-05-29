@@ -7,6 +7,7 @@ export default {
   apply:"发送请求",
   default:"默认",
   search:"搜索",
+  reset:"重置",
 
   network:"网络设置",
   networkDes:"TCP/IP等端口设置，串口设置和CAN通讯设置",
@@ -101,7 +102,9 @@ export default {
   chartDes:"图表与表格",
   chartIndex:{
     line:"折线图",
-    lineIndex:{}
+    lineIndex:{
+      difference:"差值:"
+    }
   },
 
   config:"配置",
